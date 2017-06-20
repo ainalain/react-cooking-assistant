@@ -1,0 +1,40 @@
+@import "../layout.scss";
+
+.header {
+  display: flex;
+
+  width: 100%;
+  min-height: 100px;
+
+  border: 1px solid green;
+
+  font-size: 1.8rem;
+
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav {
+  width: 70%;
+}
+
+.links {
+  display: flex;
+
+  width: 100%;
+
+  list-style: none;
+
+  flex-wrap: nowrap;
+  justify-content: space-around;
+}
+
+.link {
+  text-decoration: none;
+
+  color: #000;
+}
+
+.search {
+  width: 30%;
+}
