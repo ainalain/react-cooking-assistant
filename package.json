@@ -1,0 +1,51 @@
+{
+  "name": "hands-free-cooking-assistant",
+  "version": "1.0.0",
+  "description": "A hands free cooking assistant based on react and redux.",
+  "main": "index.js",
+  "scripts": {
+    "build": "webpack -p --config webpack.config.prod.js",
+    "start": "webpack-dev-server",
+    "test": "mocha --require tools/testSetup.js test/*.test.js",
+    "test-watch": "npm run test -- --watch"
+  },
+  "keywords": [
+    "cooking",
+    "recipes",
+    "react",
+    "redux"
+  ],
+  "author": "Elena Sufieva",
+  "license": "ISC",
+  "devDependencies": {
+    "babel-core": "^6.24.1",
+    "babel-loader": "^7.0.0",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
+    "clean-webpack-plugin": "^0.1.16",
+    "colors": "^1.1.2",
+    "css-loader": "^0.28.4",
+    "css-modules-require-hook": "^4.0.6",
+    "enzyme": "^2.8.2",
+    "eslint": "^3.19.0",
+    "eslint-loader": "^1.7.1",
+    "eslint-plugin-react": "^7.0.1",
+    "expect": "^1.20.2",
+    "extract-text-webpack-plugin": "^2.1.0",
+    "jsdom": "11.0.0",
+    "jsdom-global": "3.0.2",
+    "mocha": "^3.4.2",
+    "node-sass": "^4.5.3",
+    "prop-types": "^15.5.10",
+    "react-test-renderer": "^15.5.4",
+    "sass-loader": "^6.0.5",
+    "sinon": "^2.3.2",
+    "style-loader": "^0.18.2",
+    "webpack": "^2.6.1",
+    "webpack-dev-server": "^2.4.5"
+  },
+  "dependencies": {
+    "react": "^15.5.4",
+    "react-dom": "^15.5.4"
+  }
+}
