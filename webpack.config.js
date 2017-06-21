@@ -24,7 +24,7 @@ const cssLoaders = [
 ];
 
 let sourceMap = process.env.NODE_ENV == 'development' ?
-  'cheap-module-eval-source-map' : false;
+  'source-map' : false;
 
 let entry = process.env.NODE_ENV == 'development' ?
   [
@@ -59,6 +59,14 @@ module.exports = {
             loader: 'babel-loader',
             exclude: /node_modules/,
             options: { presets: ['es2015', 'react'] }
+        },
+        {
+          test: /\.(png|jpg|svg)$/i,
+            loader: 'url-loader',
+            options: {
+              name: 'assets/images/[name].[ext]',
+              limit: 25000
+            }
         },
         {
           test: /\.scss$/,
