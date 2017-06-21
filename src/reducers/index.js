@@ -1,7 +1,10 @@
 import { combineReducers } from 'redux';
+import recipeReducer from './recipeReducer';
+import asyncReducer from './asyncReducer';
 
 const rootReducer = combineReducers({
-    recipesReducer: () => { return []; }
+    recipes: recipeReducer,
+    isLoading: asyncReducer
 });
 
 export default rootReducer;
