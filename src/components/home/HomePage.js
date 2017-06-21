@@ -1,10 +1,37 @@
 import React from 'react';
-import styles from './HomePage.scss';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import * as actions from '../../actions/recipeActions';
+import Gallery from '../common/RecipesGallery';
 
-const HomePage = () => {
-  return (
-    <div className={styles.home}>HOME PAGE</div>
-  );
+
+class HomePage extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+
+  render() {
+    const props = this.props;
+    const category =this.props.match.params.category;
+
+    if ( this.props.isLoading ) {
+         return (<div>Loading...</div>);
+    }
+
+    return (<Gallery recipes={props.recipes} category={category} />);
+  }
+}
+
+HomePage.propTypes = {
+  recipes: PropTypes.array,
+  isLoading: PropTypes.number
 };
 
-export default HomePage;
+const mapStateToProps = (state, ownProps) => {
+  return {
+    isLoading: state.isLoading,
+    recipes: state.recipes
+  };
+};
+
+export default connect(mapStateToProps)(HomePage);
