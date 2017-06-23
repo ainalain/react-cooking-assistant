@@ -6,3 +6,6 @@ dist
 
 # Mac files
 .DS_Store
+
+#tmp folder produced by mocha-webpack
+.tmp
