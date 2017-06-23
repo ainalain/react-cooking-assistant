@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import store from '../../store';
-import Gallery from '../common/RecipesGallery';
+import Gallery from '../common/Gallery';
 
 
 class CategoryPage extends React.Component {

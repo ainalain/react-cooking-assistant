@@ -2,17 +2,17 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import * as actions from '../../actions/recipeActions';
-import Gallery from '../common/RecipesGallery';
+import Gallery from '../common/Gallery';
 
 
-class HomePage extends React.Component {
+export class HomePage extends React.Component {
   constructor(props) {
     super(props);
   }
 
   render() {
     const props = this.props;
-    const category =this.props.match.params.category;
+    const category = this.props.match.params.category;
 
     if ( this.props.isLoading ) {
          return (<div>Loading...</div>);
