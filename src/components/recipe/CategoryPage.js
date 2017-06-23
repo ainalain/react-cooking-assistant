@@ -5,7 +5,7 @@ import store from '../../store';
 import Gallery from '../common/Gallery';
 
 
-class CategoryPage extends React.Component {
+export class CategoryPage extends React.Component {
   constructor(props) {
     super(props);
 

@@ -23,23 +23,28 @@ const props = {
 };
 
 describe('Gallery', () => {
+  let component;
+  beforeEach(() => {
+    component = shallow(<Gallery {...props} /> );
+  });
+
   it('renders a section tag', () => {
-    const component = shallow(<Gallery {...props} />);
     expect(component.find('section').length).toBe(1);
   });
 
   it('renders a header tag', () => {
-    const component = shallow(<Gallery {...props} />);
     expect(component.find('h1').length).toBe(1);
   });
 
   it('renders a passed category as section header', () => {
-    const component = shallow(<Gallery {...props} />);
     expect(component.find('h1').length).toBe(1);
   });
 
   it('renders section with style of gallery', () => {
-    const component = shallow(<Gallery {...props} />);
     expect(component.find(`section.${styles.gallery}`).length).toBe(1);
+  });
+
+  it('renders section with 2 img elements', () => {
+    expect(component.find('section').find('img').length).toBe(2);
   });
 });
