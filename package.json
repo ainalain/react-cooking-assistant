@@ -38,6 +38,7 @@
     "jsdom-global": "3.0.2",
     "mocha": "^3.4.2",
     "mocha-webpack": "^0.7.0",
+    "nock": "^9.0.13",
     "node-sass": "^4.5.3",
     "prop-types": "^15.5.10",
     "react-test-renderer": "^15.5.4",
