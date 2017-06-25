@@ -18,9 +18,11 @@ module.exports.plugins.push(
     comments: false,
     compressor: {
       warnings: false
-    }
+    },
+    sourceMap: true
   }),
-  new CleanWebpackPlugin(['bundle.css', 'bundle.js'], {
+  new CleanWebpackPlugin([
+    'bundle.css', 'bundle.js', 'bundle.css.map', 'bundle.js.map'], {
     root: __dirname + '/dist',
     verbose: true,
     dry: false

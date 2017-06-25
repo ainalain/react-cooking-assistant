@@ -23,23 +23,21 @@ const cssLoaders = [
   }
 ];
 
-let sourceMap = process.env.NODE_ENV == 'development' ?
-  'source-map' : false;
-
 let entry = process.env.NODE_ENV == 'development' ?
   [
     'webpack-dev-server/client?http://localhost:8080',
     'webpack/hot/only-dev-server',
-    './app.js'
-  ] : './app.js';
+    path.resolve(__dirname, 'src/app.js')
+  ] : path.resolve(__dirname, 'src/app.js');
 
 module.exports = {
   context: path.resolve(__dirname, './src'),
-  devtool: sourceMap,
+  devtool: 'source-map', //remove it later in production
   entry: entry,
   output: {
     path: path.resolve(__dirname, './dist'),
-    filename: 'bundle.js'
+    filename: 'bundle.js',
+    publicPath: '/'
   },
   devServer: {
     historyApiFallback: true,
