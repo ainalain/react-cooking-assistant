@@ -12,8 +12,8 @@ const App = (props) => {
       <Header />
       <Switch>
         <Route exact path="/" component={HomePage} />
-        <Route path="/:category" component={CategoryPage} />
-        <Route exact path="/category/:id" component={RecipePage} />
+        <Route exact path="/:category" component={CategoryPage} />
+        <Route path="/:category/:id" component={RecipePage} />
       </Switch>
     </div>
   );
