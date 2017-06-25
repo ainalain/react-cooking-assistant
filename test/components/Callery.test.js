@@ -44,7 +44,7 @@ describe('Gallery', () => {
     expect(component.find(`section.${styles.gallery}`).length).toBe(1);
   });
 
-  it('renders section with 2 img elements', () => {
-    expect(component.find('section').find('img').length).toBe(2);
+  it('renders section with 2 Card components', () => {
+    expect(component.find('section').find('Card').length).toBe(2);
   });
 });

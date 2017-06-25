@@ -6,7 +6,7 @@
   "scripts": {
     "build": "webpack -p --config webpack.config.prod.js",
     "start": "webpack-dev-server",
-    "test": "mocha-webpack",
+    "test": "mocha --colors --require tools/testSetup.js test/*/*.test.js",
     "test:watch": "npm run test -- --watch",
     "cleanup": "rimraf .tmp"
   },
@@ -37,7 +37,6 @@
     "jsdom": "11.0.0",
     "jsdom-global": "3.0.2",
     "mocha": "^3.4.2",
-    "mocha-webpack": "^0.7.0",
     "nock": "^9.0.13",
     "node-sass": "^4.5.3",
     "prop-types": "^15.5.10",
@@ -49,8 +48,7 @@
     "style-loader": "^0.18.2",
     "url-loader": "^0.5.9",
     "webpack": "^2.6.1",
-    "webpack-dev-server": "^2.4.5",
-    "webpack-node-externals": "^1.6.0"
+    "webpack-dev-server": "^2.4.5"
   },
   "dependencies": {
     "react": "^15.5.4",
