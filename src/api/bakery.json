@@ -6,7 +6,8 @@
       "category": "Bakery",
       "serving": "3",
       "ingredients": ["3 apples", "1/2 cup white sugar","1/2 cup flour","1/2 cup semolina","around 50g of butter","cinnamon"],
-      "equipment": ["baking dish"]
+      "equipment": ["baking dish"],
+      "steps": ["Set the oven to bake at (180°C).", "Grease the foil with olive oil.", "Slice zucchini, sweet pepper and carrot into thin slices. Put the half of the vegetables on the foil in 1 layer.", "Cut the lemons in thin slices, prepare herbs, salt for the fish.", "Make 3-4 large cuts diagonally across each fish on the both sides.", "Fill each of these cuts with herbs, salt and lemon slices.", "Place the fish on a baking sheet and cover with the rest of vegetables.", "Wrap the foil tightly and put the tray in the oven on the middle rack for 45 minutes.", "Get the tray out of the oven, remove the foil from the top of the dish and put it into the oven for 5-7 minutes.", "Enjoy!"]
     },
   "currant-brownie": {
       "id": "currant-brownie",
@@ -14,7 +15,8 @@
       "cookingTime": "70",
       "category": "Bakery",
       "ingredients": ["3 apples", "1/2 cup white sugar","1/2 cup flour","1/2 cup semolina","around 50g of butter","cinnamon"],
-      "equipment": ["baking dish"]
+      "equipment": ["baking dish"],
+      "steps": ["Set the oven to bake at (180°C).", "Grease the foil with olive oil.", "Slice zucchini, sweet pepper and carrot into thin slices. Put the half of the vegetables on the foil in 1 layer.", "Cut the lemons in thin slices, prepare herbs, salt for the fish.", "Make 3-4 large cuts diagonally across each fish on the both sides.", "Fill each of these cuts with herbs, salt and lemon slices.", "Place the fish on a baking sheet and cover with the rest of vegetables.", "Wrap the foil tightly and put the tray in the oven on the middle rack for 45 minutes.", "Get the tray out of the oven, remove the foil from the top of the dish and put it into the oven for 5-7 minutes.", "Enjoy!"]
     },
   "berry-sour-cream-pie": {
       "id": "berry-sour-cream-pie",
@@ -22,7 +24,8 @@
       "cookingTime": "100",
       "category": "Bakery",
       "ingredients": ["3 apples", "1/2 cup white sugar","1/2 cup flour","1/2 cup semolina","around 50g of butter","cinnamon"],
-      "equipment": ["baking dish"]
+      "equipment": ["baking dish"],
+      "steps": ["Set the oven to bake at (180°C).", "Grease the foil with olive oil.", "Slice zucchini, sweet pepper and carrot into thin slices. Put the half of the vegetables on the foil in 1 layer.", "Cut the lemons in thin slices, prepare herbs, salt for the fish.", "Make 3-4 large cuts diagonally across each fish on the both sides.", "Fill each of these cuts with herbs, salt and lemon slices.", "Place the fish on a baking sheet and cover with the rest of vegetables.", "Wrap the foil tightly and put the tray in the oven on the middle rack for 45 minutes.", "Get the tray out of the oven, remove the foil from the top of the dish and put it into the oven for 5-7 minutes.", "Enjoy!"]
     },
     "cottage-chees-biscuits": {
       "id": "cottage-chees-biscuits",
@@ -30,7 +33,8 @@
       "cookingTime": "60",
       "category": "Bakery",
       "ingredients": ["3 apples", "1/2 cup white sugar","1/2 cup flour","1/2 cup semolina","around 50g of butter","cinnamon"],
-      "equipment": ["baking dish"]
+      "equipment": ["baking dish"],
+      "steps": ["Set the oven to bake at (180°C).", "Grease the foil with olive oil.", "Slice zucchini, sweet pepper and carrot into thin slices. Put the half of the vegetables on the foil in 1 layer.", "Cut the lemons in thin slices, prepare herbs, salt for the fish.", "Make 3-4 large cuts diagonally across each fish on the both sides.", "Fill each of these cuts with herbs, salt and lemon slices.", "Place the fish on a baking sheet and cover with the rest of vegetables.", "Wrap the foil tightly and put the tray in the oven on the middle rack for 45 minutes.", "Get the tray out of the oven, remove the foil from the top of the dish and put it into the oven for 5-7 minutes.", "Enjoy!"]
     },
     "mild-apple-pie": {
       "id": "mild-apple-pie",
@@ -38,22 +42,7 @@
       "cookingTime": "90",
       "category": "Bakery",
       "ingredients": ["3 apples", "1/2 cup white sugar","1/2 cup flour","1/2 cup semolina","around 50g of butter","cinnamon"],
-      "equipment": ["baking dish"]
-    },
-    "chocolate-cake": {
-      "id": "chocolate-cake",
-      "title": "Chocolate cake",
-      "cookingTime": "120",
-      "category": "Desserts",
-      "ingredients": ["3 apples", "1/2 cup white sugar","1/2 cup flour","1/2 cup semolina","around 50g of butter","cinnamon"],
-      "equipment": ["baking dish"]
-    },
-    "italian-ice-cream": {
-      "id": "italian-ice-cream",
-      "title": "Italian ice-cream",
-      "cookingTime": "30",
-      "category": "Desserts",
-      "ingredients": ["3 apples", "1/2 cup white sugar","1/2 cup flour","1/2 cup semolina","around 50g of butter","cinnamon"],
-      "equipment": ["baking dish"]
+      "equipment": ["baking dish"],
+      "steps": ["Set the oven to bake at (180°C).", "Grease the foil with olive oil.", "Slice zucchini, sweet pepper and carrot into thin slices. Put the half of the vegetables on the foil in 1 layer.", "Cut the lemons in thin slices, prepare herbs, salt for the fish.", "Make 3-4 large cuts diagonally across each fish on the both sides.", "Fill each of these cuts with herbs, salt and lemon slices.", "Place the fish on a baking sheet and cover with the rest of vegetables.", "Wrap the foil tightly and put the tray in the oven on the middle rack for 45 minutes.", "Get the tray out of the oven, remove the foil from the top of the dish and put it into the oven for 5-7 minutes.", "Enjoy!"]
     }
 }

@@ -15,12 +15,12 @@ class RecipePage extends React.Component {
   }
 
   componentDidMount() {
-      this.props.fetchData(this.props.id);
+    this.props.fetchData(this.props.category, this.props.id);
   }
 
   componentWillReceiveProps(nextProps) {
     if (this.props.recipe.id != nextProps.recipe.id) {
-        this.setState({ recipe: Object.assign({}, nextProps.recipe) });
+      this.setState({ recipe: Object.assign({}, nextProps.recipe) });
     }
   }
 
@@ -52,7 +52,7 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    fetchData: (id) => dispatch(fetchRecipeData(id))
+    fetchData: (category, id) => dispatch(fetchRecipeData(category, id))
   };
 };
 

@@ -26,10 +26,10 @@ export function loadRecipes() {
   };
 }
 
-export const fetchRecipeData = (id) => {
+export const fetchRecipeData = (category, id) => {
   return (dispatch) => {
     dispatch(beginAjaxCall());
-    return recipesApi.getRecipeData(id).then(recipe => {
+    return recipesApi.getRecipeData(category, id).then(recipe => {
       dispatch(fetchRecipeSuccess(recipe));
     }).catch(error => {
       dispatch(ajaxCallError(error));

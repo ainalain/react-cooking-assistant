@@ -1,5 +1,14 @@
-import * as recipe from './bakedDorado.json';
+import * as fish from './fish.json';
+import * as meat from './meat.json';
+import * as bakery from './bakery.json';
+import * as desserts from './desserts.json';
 const delay = 1000;
+
+let detailedRecipes = {};
+detailedRecipes.meat = meat;
+detailedRecipes.fish = fish;
+detailedRecipes.bakery = bakery;
+detailedRecipes.desserts = desserts;
 
 // This file mocks a web API by working with the hard-coded data below.
 // It uses setTimeout to simulate the delay of an AJAX call.
@@ -82,11 +91,15 @@ class RecipesApi {
     });
   }
 
-  static getRecipeData(id) {
+  static getRecipeData(category, id) {
     return new Promise((resolve, reject) => {
       setTimeout(() => {
-        //TODO: require the contrete recipe by id in the future
-        resolve(recipe);
+        Object.keys(detailedRecipes).forEach(key => {
+          if (key === category) {
+            let recipe = detailedRecipes[category][id];
+            resolve(recipe);
+          }
+        });
       }, delay);
     });
   }
