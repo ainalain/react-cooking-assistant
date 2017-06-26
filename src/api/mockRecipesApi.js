@@ -1,3 +1,4 @@
+import * as recipe from './bakedDorado.json';
 const delay = 1000;
 
 // This file mocks a web API by working with the hard-coded data below.
@@ -23,8 +24,8 @@ const recipes = [
     category: "Bakery"
   },
   {
-    id: "baked-fish",
-    title: "Baked fish",
+    id: "baked-dorado",
+    title: "Baked dorado",
     cookingTime: "50",
     category: "Fish"
   },
@@ -77,6 +78,15 @@ class RecipesApi {
     return new Promise((resolve, reject) => {
       setTimeout(() => {
         resolve(Object.assign([], recipes));
+      }, delay);
+    });
+  }
+
+  static getRecipeData(id) {
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        //TODO: require the contrete recipe by id in the future
+        resolve(recipe);
       }, delay);
     });
   }

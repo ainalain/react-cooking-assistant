@@ -5,7 +5,6 @@ import styles from './Card.scss';
 const pathToImages = '../../assets/images';
 
 const Card = ({ recipe }) => {
-
   return (
     <div className={styles.card}>
         <div className={styles.photo}>

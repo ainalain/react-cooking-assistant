@@ -1,0 +1,59 @@
+{
+  "crunchy-apple-pie-without-eggs": {
+      "id": "crunchy-apple-pie-without-eggs",
+      "title": "Crunchy apple pie without eggs",
+      "cookingTime": "45",
+      "category": "Bakery",
+      "serving": "3",
+      "ingredients": ["3 apples", "1/2 cup white sugar","1/2 cup flour","1/2 cup semolina","around 50g of butter","cinnamon"],
+      "equipment": ["baking dish"]
+    },
+  "currant-brownie": {
+      "id": "currant-brownie",
+      "title": "Currant brownie",
+      "cookingTime": "70",
+      "category": "Bakery",
+      "ingredients": ["3 apples", "1/2 cup white sugar","1/2 cup flour","1/2 cup semolina","around 50g of butter","cinnamon"],
+      "equipment": ["baking dish"]
+    },
+  "berry-sour-cream-pie": {
+      "id": "berry-sour-cream-pie",
+      "title": "Berry sour cream pie",
+      "cookingTime": "100",
+      "category": "Bakery",
+      "ingredients": ["3 apples", "1/2 cup white sugar","1/2 cup flour","1/2 cup semolina","around 50g of butter","cinnamon"],
+      "equipment": ["baking dish"]
+    },
+    "cottage-chees-biscuits": {
+      "id": "cottage-chees-biscuits",
+      "title": "Cottage cheese biscuits",
+      "cookingTime": "60",
+      "category": "Bakery",
+      "ingredients": ["3 apples", "1/2 cup white sugar","1/2 cup flour","1/2 cup semolina","around 50g of butter","cinnamon"],
+      "equipment": ["baking dish"]
+    },
+    "mild-apple-pie": {
+      "id": "mild-apple-pie",
+      "title": "Mild apple pie",
+      "cookingTime": "90",
+      "category": "Bakery",
+      "ingredients": ["3 apples", "1/2 cup white sugar","1/2 cup flour","1/2 cup semolina","around 50g of butter","cinnamon"],
+      "equipment": ["baking dish"]
+    },
+    "chocolate-cake": {
+      "id": "chocolate-cake",
+      "title": "Chocolate cake",
+      "cookingTime": "120",
+      "category": "Desserts",
+      "ingredients": ["3 apples", "1/2 cup white sugar","1/2 cup flour","1/2 cup semolina","around 50g of butter","cinnamon"],
+      "equipment": ["baking dish"]
+    },
+    "italian-ice-cream": {
+      "id": "italian-ice-cream",
+      "title": "Italian ice-cream",
+      "cookingTime": "30",
+      "category": "Desserts",
+      "ingredients": ["3 apples", "1/2 cup white sugar","1/2 cup flour","1/2 cup semolina","around 50g of butter","cinnamon"],
+      "equipment": ["baking dish"]
+    }
+}
