@@ -4,6 +4,8 @@ const path = require('path');
 const webpack = require('webpack');
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const srcPath = path.join(__dirname, 'src');
+const iconsPath = path.join(srcPath,'assets', 'icons');
+console.log('iconsPath: ', iconsPath);
 const cssLoaders = [
   {
     loader: "css-loader",
@@ -59,12 +61,29 @@ module.exports = {
             options: { presets: ['es2015', 'react'] }
         },
         {
-          test: /\.(png|jpg|svg)$/i,
+          test: /\.(png|jpg)$/i,
             loader: 'url-loader',
             options: {
               name: 'assets/images/[name].[ext]',
               limit: 25000
             }
+        },
+        {
+          test: /\.svg$/,
+          include: path.join(srcPath,'assets', 'icons'),
+          loaders: [
+            'svg-sprite-loader?' + JSON.stringify({
+              name: '[name].[ext]',
+              prefixize: true
+            }),
+            'svgo-loader?' + JSON.stringify({
+              plugins: [
+                { removeTitle: true },
+                { convertPathData: false },
+                { removeUselessStrokeAndFill: true }
+              ]
+            })
+          ]
         },
         {
           test: /\.scss$/,
