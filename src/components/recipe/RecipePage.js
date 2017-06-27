@@ -15,18 +15,21 @@ class RecipePage extends React.Component {
   }
 
   componentDidMount() {
-    this.props.fetchData(this.props.category, this.props.id);
+    if (typeof(this.state.recipe) == 'undefined') {
+      this.props.fetchData(this.props.category, this.props.id);
+    }
   }
 
   componentWillReceiveProps(nextProps) {
-    if (this.props.recipe.id != nextProps.recipe.id) {
+    const recipe = this.props.recipe;
+    if ((typeof(recipe) == 'undefined') || recipe.id != nextProps.recipe.id) {
       this.setState({ recipe: Object.assign({}, nextProps.recipe) });
     }
   }
 
   render() {
     let recipe = this.state.recipe;
-    if (!Object.keys(recipe).length) {
+    if (!recipe) {
       return (<div>Loading...</div>);
     }
     return (<Recipe recipe={recipe} key={recipe.id}/>);
@@ -42,11 +45,16 @@ RecipePage.propTypes = {
 const mapStateToProps = (state, ownProps) => {
   const category = ownProps.match.params.category;
   const id = ownProps.match.params.id;
-
+  const getCurrentRecipe = (id) => {
+    return state.detailedRecipes.instructions.find(recipe => {
+      return recipe.id == id;
+    });
+  };
+  const currentRecipe = getCurrentRecipe(id);
   return {
     id,
     category,
-    recipe: state.currentRecipe
+    recipe: currentRecipe
   };
 };
 
