@@ -1,5 +1,5 @@
 import expect from 'expect';
-import reducer from '../../src/reducers/recipeReducer';
+import reducer from '../../src/reducers/recipesReducer';
 import * as actions from '../../src/actions/recipeActions';
 
 
