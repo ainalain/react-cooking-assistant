@@ -13,6 +13,13 @@ hook({
   preprocessCss: ( data, file ) => sass.renderSync({ file }).css
 });
 
+//add .svg right comprehension to mocha tests
+const fs = require('fs');
+
+require.extensions['.svg'] = function (module, filename) {
+   module.exports = fs.readFileSync(filename, 'utf8');
+};
+
 global.sinon = sinon;
 
 global.navigator = {
