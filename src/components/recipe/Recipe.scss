@@ -11,83 +11,31 @@ $coral: coral;
 }
 
 .recipeHeader {
+  padding: 20px 0 10px;
+
   font-family: 'Crimson Text', serif;
   font-size: 3.6rem;
-  padding: 20px 0 10px;
 }
 
 .category {
+  padding: 10px 0;
+
   color: $coral;
+  border-color: lighten($coral, 20%);
   border-top: 1px solid;
   border-bottom: 1px solid;
-  border-color: lighten($coral, 20%);
-  padding: 10px 0;
-}
-
-.info {
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  padding-top: 10px;
-
-}
-
-.time {
-  display: flex;
-  align-items: center;
-}
-
-.clock {
-  width: 36px;
-}
-
-.clockIcon {
-  @include size100();
-}
-
-.cookingTime {
-  padding-left: 10px;
-}
-
-.serving {
-  display: flex;
-  align-items: center;
-  padding-left: 15px;
 }
 
 .photo {
-  flex: 0.5;
   padding: 10px;
+
+  flex: 0.5;
 }
 
 .image {
   @include size100();
 }
 
-.ingredients {
-  flex: 0.5;
-}
-
-.ingredientsHeading {
-  //font-family: 'Crimson Text', serif;
-  text-align: center;
-  font-size: 3rem;
-  text-transform: capitalize;
-}
-
-.ingredientsList {
-  padding: 10px 0 0 30px;
-}
-
-.item {
-  padding: 7px 0;
-  font-size: 1.2rem;
-}
-
-.stepsList {
-  list-style-position: inside;
-}
-
-.step {
-  list-style-type: decimal;
+.steps {
+  padding-top: 30px;
 }

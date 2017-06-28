@@ -1,0 +1,36 @@
+@import "../layout.scss";
+
+.info {
+  display: flex;
+
+  padding-top: 10px;
+
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.time {
+  display: flex;
+
+  align-items: center;
+}
+
+.clock {
+  width: 36px;
+}
+
+.clockIcon {
+  @include size100();
+}
+
+.text {
+  padding-left: 5px;
+}
+
+.serving {
+  display: flex;
+
+  padding-left: 40px;
+
+  align-items: center;
+}

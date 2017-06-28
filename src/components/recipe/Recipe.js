@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Clock from '../../assets/icons/clock.svg';
-import Serving from '../../assets/icons/serving.svg';
+import ItemsList from '../common/ItemsList';
 import Icon from '../common/Icon';
+import InfoLine from './InfoLine';
 import styles from './Recipe.scss';
 
 const pathToImages = '../../assets/images';
@@ -12,44 +12,17 @@ const Recipe = ({ recipe }) => {
     <section className={styles.recipe}>
        <h1 className={styles.recipeHeader}>{recipe.title}</h1>
        <p className={styles.category}>{recipe.category}</p>
-       <div className={styles.info}>
-          <div className={styles.time}>
-            <div className={styles.clock}>
-            <Icon glyph={Clock} className={styles.clockIcon} />
-           </div>
-           <span className={styles.cookingTime}>{recipe.cookingTime} min</span>
-          </div>
-          <div className={styles.serving}>
-            <div className={styles.clock}>
-              <Icon glyph={Serving} className={styles.clockIcon} />
-           </div>
-           <span className={styles.cookingTime}>{recipe.serving} person</span>
-          </div>
-       </div>
+       <InfoLine time={recipe.cookingTime} serving={recipe.serving} />
        <div className={styles.card}>
          <div className={styles.photo}>
            <img className={styles.image}
              src={`${pathToImages}/${recipe.id}.png`}
              alt={`${recipe.title} recipe`} />
          </div>
-         <div className={styles.ingredients}>
-         <h2 className={styles.ingredientsHeading}>ingredients</h2>
-          <ul className={styles.ingredientsList}>
-            {recipe.ingredients.map(item => (
-              <li key={item} className={styles.item}>{item}</li>
-              )
-            )}
-          </ul>
-         </div>
+          <ItemsList items={recipe.ingredients} title='ingredients' />
         </div>
        <div className={styles.steps}>
-       <h2 className={styles.stepsHeading}>Steps</h2>
-        <ul className={styles.stepsList}>
-          {recipe.steps.map(item => (
-            <li key={item} className={styles.step}>{item}</li>
-            )
-          )}
-        </ul>
+       <ItemsList items={recipe.steps} title='steps' />
        </div>
       </section>
   );
