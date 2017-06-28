@@ -5,7 +5,7 @@ import { fetchRecipeData } from '../../actions/recipeActions';
 import recipesApi from '../../api/mockRecipesApi';
 import Recipe from './Recipe';
 
-class RecipePage extends React.Component {
+export class RecipePage extends React.Component {
   constructor(props) {
     super(props);
 

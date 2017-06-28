@@ -51,7 +51,7 @@ describe('CategoryPage', () => {
   });
 
   describe('Connected CategoryPage', () => {
-    it('when loading is finished, it renders a Gallery', () => {
+    it('it renders connected component', () => {
       const store = mockStore({
         isLoading: 1,
         recipes: []
