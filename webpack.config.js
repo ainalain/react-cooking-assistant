@@ -69,6 +69,15 @@ module.exports = {
             }
         },
         {
+          test: /\.(woff|woff2)$/,
+            loader: 'url-loader',
+            options: {
+              limit: 50000,
+              mimetype: 'application/font-woff',
+              name: 'assets/fonts/[name].[ext]',
+            }
+        },
+        {
           test: /\.svg$/,
           include: path.join(srcPath,'assets', 'icons'),
           loaders: [
