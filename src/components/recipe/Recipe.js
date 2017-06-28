@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Clock from '../../assets/icons/clock.svg';
+import Serving from '../../assets/icons/serving.svg';
 import Icon from '../common/Icon';
 import styles from './Recipe.scss';
 
@@ -18,7 +19,12 @@ const Recipe = ({ recipe }) => {
            </div>
            <span className={styles.cookingTime}>{recipe.cookingTime} min</span>
           </div>
-          <div className={styles.serving}>{recipe.serving} person</div>
+          <div className={styles.serving}>
+            <div className={styles.clock}>
+              <Icon glyph={Serving} className={styles.clockIcon} />
+           </div>
+           <span className={styles.cookingTime}>{recipe.serving} person</span>
+          </div>
        </div>
        <div className={styles.card}>
          <div className={styles.photo}>
