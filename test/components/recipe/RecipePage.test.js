@@ -5,7 +5,7 @@ import { shallow, mount  } from 'enzyme';
 import configureStore from 'redux-mock-store';
 import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
-import ConnectedPage, { RecipePage } from '../../src/components/recipe/RecipePage';
+import ConnectedPage, { RecipePage } from '../../../src/components/recipe/RecipePage';
 
 const mockStore = configureStore([thunk]);
 const recipe = {
@@ -69,7 +69,8 @@ describe('RecipePage', () => {
   it('calls componentDidMount method after page is rendered', () => {
     const fakeFetch = sinon.spy();
     const componentDidMountSpy = sinon.spy(RecipePage.prototype, 'componentDidMount');
-    const component = mount(<RecipePage fetchData={fakeFetch} />);
+    const component = mount(<RecipePage fetchData={fakeFetch}
+      id='test-recipe' category='Bakery' />);
 
     expect(RecipePage.prototype.componentDidMount.calledOnce).toBe(true);
     expect(fakeFetch.calledOnce).toBe(true);
@@ -78,7 +79,7 @@ describe('RecipePage', () => {
 
   it('has recipe in state and does not fetch recipe if it has already from props', () => {
     const fakeFetch = sinon.spy();
-    const fakeProps = { recipe };
+    const fakeProps = { recipe, id: 'test-recipe', category: 'Bakery' };
     const componentDidMountSpy = sinon.spy(RecipePage.prototype, 'componentDidMount');
     const component = mount(<RecipePage fetchData={fakeFetch} {...fakeProps} />);
 

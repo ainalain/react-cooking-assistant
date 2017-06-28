@@ -7,7 +7,7 @@
     "build": "webpack -p --config webpack.config.prod.js",
     "start": "webpack-dev-server",
     "server": "babel-node tools/distServer",
-    "test": "mocha --colors --require tools/testSetup.js test/*/*.test.js",
+    "test": "mocha --colors --require tools/testSetup.js --recursive \"test/**/*.test.js\"",
     "test:watch": "npm run test -- --watch",
     "cleanup": "rimraf .tmp"
   },

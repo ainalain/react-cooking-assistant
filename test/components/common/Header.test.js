@@ -1,9 +1,9 @@
 import expect from 'expect';
 import React from 'react';
 import { shallow  } from 'enzyme';
-import Header from '../../src/components/common/Header';
-import Icon from '../../src/components/common/Icon';
-import Logo from '../../src/assets/icons/logo.svg';
+import Header from '../../../src/components/common/Header';
+import Icon from '../../../src/components/common/Icon';
+import Logo from '../../../src/assets/icons/logo.svg';
 
 
 describe('Header', () => {

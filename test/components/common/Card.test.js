@@ -1,8 +1,8 @@
 import expect from 'expect';
 import React from 'react';
 import { shallow  } from 'enzyme';
-import Card from '../../src/components/common/Card';
-import styles from '../../src/components/common/Card.scss';
+import Card from '../../../src/components/common/Card';
+import styles from '../../../src/components/common/Card.scss';
 
 const props = {
   recipe: {
