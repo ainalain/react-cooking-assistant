@@ -18,67 +18,78 @@ const recipes = [
     id: "crunchy-apple-pie-without-eggs",
     title: "Crunchy apple pie without eggs",
     cookingTime: "45",
-    category: "Bakery"
+    category: "Bakery",
+    serving: "4"
   },
   {
     id: "currant-brownie",
     title: "Currant brownie",
     cookingTime: "70",
-    category: "Bakery"
+    category: "Bakery",
+    serving: "6"
   },
   {
     id: "berry-sour-cream-pie",
     title: "Berry sour cream pie",
     cookingTime: "100",
-    category: "Bakery"
+    category: "Bakery",
+    serving: "3"
   },
   {
     id: "baked-dorado",
     title: "Baked dorado",
     cookingTime: "50",
-    category: "Fish"
+    category: "Fish",
+    serving: "3"
   },
   {
     id: "cottage-chees-biscuits",
     title: "Cottage cheese biscuits",
     cookingTime: "60",
-    category: "Bakery"
+    category: "Bakery",
+    serving: "3"
   },
   {
     id: 'mild-apple-pie',
     title: 'Mild apple pie',
     cookingTime: "90",
-    category: "Bakery"
+    category: "Bakery",
+    serving: "3"
   },
   {
     id: 'aunt-beef',
     title: 'Aunt beef',
     cookingTime: "120",
-    category: "Meat"
+    category: "Meat",
+    serving: "6"
   },
   {
     id: 'braised-rabbit',
     title: 'Braised rabbit',
     cookingTime: "120",
-    category: "Meat"
+    category: "Meat",
+    serving: "4"
   },
   {
     id: 'baked-pork',
     title: 'Baked pork',
     cookingTime: "120",
-    category: "Meat"
+    category: "Meat",
+    serving: "6-12"
   },
   {
     id: 'chocolate-cake',
     title: 'Chocolate cake',
     cookingTime: "120",
-    category: "Desserts"
+    category: "Desserts",
+    serving: "3"
   },
   {
     id: 'italian-ice-cream',
     title: 'Italian ice-cream',
     cookingTime: "30",
-    category: "Desserts"
+    category: "Desserts",
+    serving: "5"
   }
 ];
 
