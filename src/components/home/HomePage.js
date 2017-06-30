@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import * as actions from '../../actions/recipeActions';
 import Gallery from '../common/Gallery';
+import Greetings from './Greetings';
+import styles from './HomePage.scss';
 
 
 export class HomePage extends React.Component {
@@ -18,7 +20,10 @@ export class HomePage extends React.Component {
          return (<div>Loading...</div>);
     }
 
-    return (<Gallery recipes={props.recipes} category={category} />);
+    return (<div className={styles.home}>
+        <Greetings />
+        <Gallery recipes={props.recipes} category={category} />
+      </div>);
   }
 }
 

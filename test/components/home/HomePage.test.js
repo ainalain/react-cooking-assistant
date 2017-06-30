@@ -43,4 +43,9 @@ describe('HomePage', () => {
     const component = setup(0);
     expect(component.find('Gallery').length).toBe(1);
   });
+
+  it('renders Greetings components', () => {
+    const component = setup(0);
+    expect(component.find('Greetings').length).toBe(1);
+  });
 });
