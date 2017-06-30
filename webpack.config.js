@@ -4,8 +4,9 @@ const path = require('path');
 const webpack = require('webpack');
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const srcPath = path.join(__dirname, 'src');
+const autoprefixer = require('autoprefixer');
 const iconsPath = path.join(srcPath,'assets', 'icons');
-console.log('iconsPath: ', iconsPath);
+
 const cssLoaders = [
   {
     loader: "css-loader",
@@ -21,6 +22,14 @@ const cssLoaders = [
     options: {
       sourceMap: true,
       sourceMapContents: true
+    }
+  },
+  {
+    loader: 'postcss-loader',
+    options: {
+      plugins: () => {
+        return [autoprefixer]
+      }
     }
   }
 ];

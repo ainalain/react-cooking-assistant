@@ -20,6 +20,7 @@
   "author": "Elena Sufieva",
   "license": "ISC",
   "devDependencies": {
+    "autoprefixer": "^7.1.1",
     "babel-cli": "^6.24.1",
     "babel-core": "^6.24.1",
     "babel-loader": "^7.0.0",
@@ -42,6 +43,7 @@
     "mocha": "^3.4.2",
     "nock": "^9.0.13",
     "node-sass": "^4.5.3",
+    "postcss-loader": "^2.0.6",
     "prop-types": "^15.5.10",
     "react-test-renderer": "^15.5.4",
     "redux-mock-store": "^1.2.3",
