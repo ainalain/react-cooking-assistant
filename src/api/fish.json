@@ -2,6 +2,7 @@
   "baked-dorado": {
     "id": "baked-dorado",
     "title": "Baked Dorado",
+    "category": "Fish",
     "cookingTime": "50",
     "serving": "3",
     "ingredients": ["3 doradas","1-2 lemons","1 zucchini","1 carrot stick", "1 sweet pepper","dried or fresh herbs (thyme/rosemary/parsley)","olive oil","salt"],
