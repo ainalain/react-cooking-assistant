@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import ItemsList from '../common/ItemsList';
 import Icon from '../common/Icon';
-import InfoLine from './InfoLine';
+import InfoLine from '../common/InfoLine';
 import styles from './Recipe.scss';
 
 const pathToImages = '../../assets/images';

@@ -2,21 +2,21 @@
 
 .header {
   display: flex;
-
+  flex-wrap: wrap;
   width: 100%;
   min-height: 100px;
 
   border: 1px solid green;
 
-  font-size: 1.8rem;
+  font-size: 1.2rem;
 
   justify-content: space-between;
   align-items: center;
 }
 
 .nav {
-  width: 80%;
-  padding: 0 40px;
+  width: 100%;
+  padding: 0 10px;
   font-family: 'Crimson Text', serif;
 }
 
@@ -42,7 +42,7 @@
 }
 
 .logo {
-  width: 80px;
+  width: 40px;
 }
 
 .logoIcon {
@@ -54,3 +54,29 @@
   width: 30%;
   text-align: center;
 }
+
+@include tablet-portrait-up() {
+  .header {
+    font-size: 1.8rem;
+    flex-wrap: nowrap;
+  }
+
+  .nav {
+    width: 80%;
+    padding: 0 40px;
+  }
+  .logo {
+    width: 80px;
+  }
+
+  .search {
+    width: 30%;
+    text-align: center;
+  }
+}
+
+@include tablet-portrait-only() {
+  .header {
+    font-size: 1.4rem;
+  }
+};

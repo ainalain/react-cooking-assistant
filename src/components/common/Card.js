@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import InfoLine from './InfoLine';
 import styles from './Card.scss';
 
 const pathToImages = '../../assets/images';
@@ -12,8 +13,9 @@ const Card = ({ recipe }) => {
             src={`${pathToImages}/${recipe.id}.png`}
             alt={`${recipe.title} recipe`} />
         </div>
-        <div className={styles.cookingTime}>
-        cookingTime={recipe.cookingTime}
+        <div className={styles.info}>
+          <div className={styles.title}>{recipe.title}</div>
+          <InfoLine card='true' time={recipe.cookingTime} serving={recipe.serving} />
         </div>
     </div>
   );

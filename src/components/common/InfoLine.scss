@@ -34,3 +34,21 @@
 
   align-items: center;
 }
+
+.info.card {
+  color: #000;
+
+  font-size: 1.1rem;
+
+  .clock {
+    width: 18px;
+  }
+
+  .text {
+    padding-left: 3px;
+  }
+
+  .serving {
+    padding-left: 15px;
+  }
+}
