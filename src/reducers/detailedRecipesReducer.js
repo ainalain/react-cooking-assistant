@@ -6,6 +6,7 @@ export default function detailedRecipesReducer(state = initialState, action) {
   switch(action.type) {
     case types.FETCH_RECIPE_SUCCESS:
     let recipes;
+    //if we have already this recipe in state
     if (state.instructions.filter(
       instruction => instruction.id === action.recipe.id).length > 0) {
       recipes = state.instructions.slice();

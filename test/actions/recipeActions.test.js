@@ -20,6 +20,17 @@ describe('Recipe actions', () => {
       category: "Desserts"
     }
   ];
+
+  const recipe = {
+      'id': 'test-recipe',
+      'title': 'Test recipe',
+      'cookingTime': '45',
+      'category': 'Bakery',
+      'serving': '3',
+      'ingredients': ['3 apples', '1/2 cup white sugar','1/2 cup flour'],
+      'steps': ['step 1', 'step 2','step 3']
+  };
+
   //Test a sync action
   it('should create a LOAD_RECIPES_SUCCESS action', () => {
     const expectedAction = {
@@ -27,6 +38,15 @@ describe('Recipe actions', () => {
       recipes
     };
     const action = actions.loadRecipesSuccess(recipes);
+    expect(action).toEqual(expectedAction);
+  });
+
+  it('should create a FETCH_RECIPE_SUCCES action', () => {
+    const expectedAction = {
+      type: types.FETCH_RECIPE_SUCCESS,
+      recipe
+    };
+    const action = actions.fetchRecipeSuccess(recipe);
     expect(action).toEqual(expectedAction);
   });
 
