@@ -1,25 +1,21 @@
 @import "../layout.scss";
 
 .section {
-  flex: 0.5;
+  padding-top: 15px;
 }
 
 .heading {
-  padding-left: 20px;
-
   text-align: left;
   text-transform: capitalize;
 
   font-family: 'Crimson Text', serif;
-  font-size: 3rem;
+  font-size: 2.6rem;
 }
 
 .items {
-  padding: 10px 0 0 10px;
-}
-
-.items.ingredients {
-  padding-left: 20px;
+  padding-top: 10px;
+  text-align: justify;
+  line-height: 1.4rem;
 }
 
 .items.steps {
@@ -33,4 +29,25 @@
   padding: 7px 0;
 
   font-size: 1.2rem;
+}
+
+@include tablet-portrait-up() {
+  .section {
+    flex: 0.5;
+    padding-top: 0;
+  }
+
+  .heading {
+    padding-left: 20px;
+
+    font-size: 3rem;
+  }
+
+  .items {
+    padding: 10px 0 0 10px;
+  }
+
+  .items.ingredients {
+    padding-left: 20px;
+  }
 }

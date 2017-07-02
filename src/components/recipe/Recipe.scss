@@ -3,11 +3,12 @@
 $coral: coral;
 
 .recipe {
-  padding: 0 40px;
+  padding: 0 20px 0 30px;
 }
 
 .card {
   display: flex;
+  flex-wrap: wrap;
 }
 
 .recipeHeader {
@@ -27,9 +28,8 @@ $coral: coral;
 }
 
 .photo {
-  padding: 10px;
-
-  flex: 0.5;
+  width: 100%;
+  height: 66.66%;
 }
 
 .image {
@@ -38,4 +38,29 @@ $coral: coral;
 
 .steps {
   padding-top: 30px;
+}
+
+@include tablet-portrait-up() {
+  .recipe {
+    padding: 0 40px;
+  }
+
+  .card {
+    flex-wrap: nowrap;
+  }
+
+  .recipeHeader {
+  }
+
+  .photo {
+    padding: 10px;
+    flex: 0.5;
+  }
+}
+
+@include tablet-portrait-only() {
+  .photo {
+    flex: 0.9;
+  }
+
 }
