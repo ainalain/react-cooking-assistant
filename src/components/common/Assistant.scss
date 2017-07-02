@@ -1,0 +1,63 @@
+@import "../layout.scss";
+
+$orange: #f3961c;
+
+.assistant {
+  display: flex;
+
+  padding: 10px 0 10px 15px;
+
+  font-size: 1.2rem;;
+}
+
+.robot {
+  display: flex;
+
+  width: 28px;
+
+}
+
+.icon {
+  cursor: pointer;
+
+  @include size100();
+}
+
+.button {
+  display: flex;
+
+  padding: 10px 15px;
+
+  cursor: pointer;
+
+  border: 1px solid $orange;
+  border-radius: 5px;
+  outline-width: 0px;
+  outline-color: transparent;
+  background: $orange;
+
+  font-size: 1.2rem;
+
+  justify-content: space-around;
+  align-items: center;
+}
+
+.text {
+  padding-left: 3px;
+}
+
+@include tablet-portrait-up() {
+  .robot {
+    width: 30px;
+  }
+
+  .assistant {
+    font-size: 1.4rem;
+  }
+
+  .button {
+    padding: 10px 20px;
+
+    font-size: 1.4rem;
+  }
+}

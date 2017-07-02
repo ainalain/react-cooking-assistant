@@ -1,3 +1,7 @@
+@mixin phone-portrait-only {
+  @media (min-width: 299px) and (max-width: 500px) { @content; }
+}
+
 @mixin phone-only {
   @media (max-width: 599px) { @content; }
 }

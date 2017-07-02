@@ -5,6 +5,9 @@
 
   padding-top: 10px;
 
+  font-size: 1.2rem;
+
+  flex-wrap: wrap;
   justify-content: flex-start;
   align-items: center;
 }
@@ -15,11 +18,11 @@
   align-items: center;
 }
 
-.clock {
-  width: 36px;
+.iconWrap {
+  width: 24px;
 }
 
-.clockIcon {
+.icon {
   @include size100();
 }
 
@@ -30,7 +33,7 @@
 .serving {
   display: flex;
 
-  padding-left: 40px;
+  padding-left: 15px;
 
   align-items: center;
 }
@@ -50,5 +53,21 @@
 
   .serving {
     padding-left: 15px;
+  }
+}
+
+@include tablet-portrait-up() {
+  .info {
+    font-size: 1.4rem;
+
+    flex-wrap: nowrap;
+  }
+
+  .clock {
+    width: 36px;
+  }
+
+  .serving {
+    padding-left: 40px;
   }
 }
