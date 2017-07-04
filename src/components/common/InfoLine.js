@@ -6,7 +6,7 @@ import Icon from './Icon';
 import Assistant from './Assistant';
 import styles from './InfoLine.scss';
 
-const InfoLine = ({ card, time, serving }) => {
+const InfoLine = ({ card, time, serving, category, id, onClick }) => {
   const cssClass = card ? `${styles.info} ${styles.card}` : `${styles.info}`;
   return (
     <div className={cssClass}>
@@ -22,14 +22,16 @@ const InfoLine = ({ card, time, serving }) => {
         </div>
         <span className={styles.text}>{serving} person</span>
        </div>
-       {card ? null : <Assistant />}
+       {card ? null : <Assistant category={category} id={id} onClick={onClick} />}
     </div>
   );
 };
 
 InfoLine.propTypes = {
   time: PropTypes.string.isRequired,
-  serving: PropTypes.string.isRequired
+  serving: PropTypes.string.isRequired,
+  card: PropTypes.string,
+  onClick: PropTypes.func
 };
 
 export default InfoLine;

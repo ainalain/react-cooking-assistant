@@ -1,6 +1,24 @@
 @import "../layout.scss";
 
+@mixin button {
+  display: flex;
+
+  padding: 10px 15px;
+
+  cursor: pointer;
+
+  border-radius: 5px;
+  outline-width: 0px;
+  outline-color: transparent;
+
+  font-size: 1.2rem;
+
+  justify-content: space-around;
+  align-items: center;
+}
+
 $orange: #f3961c;
+$blue: HSL(185, 92%, 37%);
 
 .assistant {
   display: flex;
@@ -17,29 +35,28 @@ $orange: #f3961c;
 
 }
 
-.icon {
+.sadRobot {
+  width: 64px;
+}
+
+.icon, .sadIcon {
   cursor: pointer;
 
   @include size100();
 }
 
 .button {
-  display: flex;
-
-  padding: 10px 15px;
-
-  cursor: pointer;
+  @include button();
 
   border: 1px solid $orange;
-  border-radius: 5px;
-  outline-width: 0px;
-  outline-color: transparent;
   background: $orange;
+}
 
-  font-size: 1.2rem;
+.turnoff {
+  @include button();
+  border: 1px solid $blue;
 
-  justify-content: space-around;
-  align-items: center;
+  background: $blue;
 }
 
 .text {
@@ -59,5 +76,11 @@ $orange: #f3961c;
     padding: 10px 20px;
 
     font-size: 1.4rem;
+  }
+
+  .turnoff {
+    font-size: 1.4rem;
+
+    margin-left: 10px;
   }
 }

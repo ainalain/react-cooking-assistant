@@ -1,26 +1,149 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { talkToAssistant } from '../../actions/assistantActions';
 import Icon from './Icon';
 import AssistantIcon from '../../assets/icons/assistant.svg';
+import SadRobotIcon from '../../assets/icons/sad-robot.svg';
 import styles from './Assistant.scss';
 
-const Assistant = () => {
-  return (
-    <div className={styles.assistant}>
-      <button
-        value='submit'
-        className={styles.button}>
-        <div className={styles.robot}>
-          <Icon glyph={AssistantIcon} className={styles.icon} />
-        </div>
-        <span className={styles.text}>Assistant</span>
-      </button>
-    </div>
-  );
-};
+class Assistant extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.recognition = null;
+    this.state = {
+      enabled: false,
+      recording: false,
+      botAnswer: this.props.botAnswer,
+      contextCount: 0
+    };
+
+    this.beginRecognition = this.beginRecognition.bind(this);
+    this.stopRecognition = this.stopRecognition.bind(this);
+    this.enableAssistant = this.enableAssistant.bind(this);
+  }
+
+  componentDidMount() {
+    this.setupRecognition();
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.botAnswer != this.state.botAnswer) {
+      this.setState({ botAnswer: nextProps.botAnswer}, this.sayBotAnswer );
+    }
+  }
+
+  enableAssistant() {
+    let category = this.props.category,
+    id = this.props.id;
+    const launchText = 'Let\' cook something.';
+    let params = { category, id, text: launchText, count: this.state.contextCount };
+
+    this.props.talkToAssistant(params);
+  }
+
+  sayBotAnswer() {
+    let message;
+    if (!this.state.botAnswer || !this.state.botAnswer.length) {
+        message = 'Sorry, I don\'t understand you.';
+    } else {
+      message = this.state.botAnswer;
+      //TODO: change this hardcoded method to something better
+      if (~message.indexOf('whole recipe')) {
+        let newCount =+ this.state.contextCount;
+        this.setState({ contextCount: newCount });
+      }
+    }
+
+     let msg = new SpeechSynthesisUtterance();
+     msg.onend = () => {
+       this.beginRecognition();
+     };
+     let voices = window.speechSynthesis.getVoices();
+     msg.voiceURI = "native";
+     msg.text = message;
+     msg.lang = "en-US";
+     window.speechSynthesis.speak(msg);
+  }
+
+  setupRecognition() {
+    this.recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition || window.mozSpeechRecognition || window.msSpeechRecognition)();
+    this.recognition.lang = "en-US";
+    this.recognition.continuous = true;
+		this.recognition.onresult = this.processRecognition.bind(this);
+    this.recognition.onend = this.finishRecognition.bind(this);
+  }
+
+  processRecognition(event) {
+    this.recognition.onend = null;
+
+    let text = "";
+    for (let i = event.resultIndex; i < event.results.length; ++i) {
+      text += event.results[i][0].transcript;
+    }
+    this.stopRecognition();
+    let category = this.props.category,
+    id = this.props.id;
+    let params = {category, id, text, count: this.state.contextCount};
+    this.props.talkToAssistant(params);
+  }
+
+  finishRecognition() {
+    this.respond('Sorry, I cannot hear you.');
+    this.setState({ isRecording: false });
+    this.stopRecognition();
+  }
+
+  beginRecognition() {
+    this.setState({ enabled: true });
+    this.recognition.start();
+  }
+
+  stopRecognition() {
+    if (this.recognition) {
+      this.recognition.stop();
+     this.setState({ enabled: false });
+    }
+  }
+
+  render() {
+    return (
+      <div className={styles.assistant}>
+        <button
+          value='submit'
+          onClick={this.enableAssistant}
+          className={styles.button}>
+          <div className={styles.robot}>
+            <Icon glyph={AssistantIcon} className={styles.icon} />
+          </div>
+          <span className={styles.text}>Assistant</span>
+        </button>
+        {this.state.enabled ?
+          <button className={styles.turnoff} onClick={this.stopRecognition}>
+          Stop assistant
+          <div className={styles.sadRobot}>
+            <Icon glyph={SadRobotIcon} className={styles.sadIcon} />
+          </div>
+          </button> : null}
+      </div>
+    );
+  }
+}
 
 Assistant.propTypes = {
-
+  onClick: PropTypes.func.isRequired
 };
 
-export default Assistant;
+const mapStateToProps = (state, ownProps) => {
+  let answer = state.botTalk[0];
+  return { botAnswer: answer };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    talkToAssistant: (text) => dispatch(talkToAssistant(text))
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Assistant);
