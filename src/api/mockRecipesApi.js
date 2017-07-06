@@ -43,7 +43,7 @@ const recipes = [
     serving: "3"
   },
   {
-    id: "cottage-chees-biscuits",
+    id: "cottage-cheese-biscuits",
     title: "Cottage cheese biscuits",
     cookingTime: "60",
     category: "Bakery",
