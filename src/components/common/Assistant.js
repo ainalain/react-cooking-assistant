@@ -31,6 +31,7 @@ class Assistant extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
+    console.log('next Props: ', nextProps);
     if (nextProps.isCooking != this.props.isCooking) {
       this.setState({ isCooking: nextProps.isCooking });
     }
@@ -55,6 +56,7 @@ class Assistant extends React.Component {
 
   sayBotAnswer() {
     let message;
+    console.log('say bot answer: ', this.state.botAnswer);
     if (!this.state.botAnswer || !this.state.botAnswer.length) {
         message = 'Sorry, I don\'t understand you. Can you repeat it please?';
     } else {
@@ -79,11 +81,22 @@ class Assistant extends React.Component {
     let text = composeText(event);
     this.stopRecognition();
     if (this.state.isCooking) {
-      console.log('augment cookingStep');
-      let nextStep = this.state.cookingStep + 1;
-      this.setState({ cookingStep: nextStep }, this.talkToBot.bind(this, text));
+      this.setRightStep(text);
     } else {
       this.talkToBot(text);
+    }
+  }
+
+  setRightStep(text) {
+    const repeatRegexp = /repeat/ig;
+    const sayItRegexp = /say it again/ig;
+    let nextStep;
+    if (~text.search(repeatRegexp) || ~text.search(sayItRegexp)) {
+      console.log('this is repeat!');
+      this.talkToBot(text);
+    } else {
+      let nextStep = this.state.cookingStep + 1;
+      this.setState({ cookingStep: nextStep }, this.talkToBot.bind(this, text));
     }
   }
 
@@ -91,7 +104,6 @@ class Assistant extends React.Component {
     let category = this.props.category,
     id = this.props.id,
     cookingStep = this.state.cookingStep;
-    console.log('cookingStep: ', cookingStep);
     let params = {category, id, text, cookingStep};
     this.props.talkToAssistant(params);
   }
@@ -148,7 +160,8 @@ const mapStateToProps = (state, ownProps) => {
 
   return {
     botAnswer: answer,
-    isCooking: isCooking
+    isCooking: isCooking,
+    answerTime: state.botTalk.answerTime
    };
 };
 

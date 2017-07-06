@@ -1,6 +1,10 @@
 import * as types from '../actions/actionTypes';
 
-const initialState = { spokenResponse: null, isCooking: false };
+const initialState = {
+  spokenResponse: null,
+  isCooking: false,
+  answerTime: null
+ };
 const cookingIntents = ['start_reading_steps', 'steps_one_by_one'];
 
 /*
@@ -21,7 +25,9 @@ export default function botTalkReducer(state = initialState, action) {
     if (~cookingIntents.indexOf(intentName)) {
       isCooking = true;
     }
-      return Object.assign({}, { spokenResponse, isCooking });
+    let timestamp = Math.round(+new Date()/1000);
+    console.log('time: ', timestamp);
+      return Object.assign({}, { spokenResponse, isCooking, answerTime: timestamp });
     default:
       return state;
   }
