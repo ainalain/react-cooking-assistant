@@ -23,18 +23,23 @@ export const botAnswerSuccess = (answer) => {
 const assistantApiAddress = 'https://api.api.ai/v1/';
 const accessToken = '76a6961de42c4a989f48fc3130e2fad8';
 
-const contextsArr = [
-  'ingredients', 'whole_recipe'
-];
+// const contextsArr = [
+//   'ingredients', 'whole_recipe'
+// ];
 
 export function talkToAssistant(params) {
   //TODO: you have to handle contexts in a smarter way
-  let name = contextsArr[params.count];
+  //let name = contextsArr[params.count];
+  console.log('cooking step: ', params.cookingStep);
   let contexts =[{
-    'name': name,
-    'lifespan': 3,
+    'name': 'recipeContext',
+    'lifespan': 10,
     'parameters':
-    {'category': params.category.toLowerCase(), 'id': params.id}
+    {
+      'category': params.category.toLowerCase(),
+      'id': params.id,
+      'step': params.cookingStep
+    }
   }];
   return (dispatch) => {
     let request = {

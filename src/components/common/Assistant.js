@@ -16,7 +16,8 @@ class Assistant extends React.Component {
       enabled: false,
       recording: false,
       botAnswer: this.props.botAnswer,
-      contextCount: 0
+      isCooking: this.props.isCooking,
+      cookingStep: null
     };
 
     this.beginRecognition = this.beginRecognition.bind(this);
@@ -29,6 +30,14 @@ class Assistant extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
+    if (nextProps.isCooking != this.props.isCooking) {
+      this.setState({ isCooking: nextProps.isCooking });
+      if (nextProps.isCooking) {
+        this.setState({ cookingStep: 1 });
+      } else {
+        this.setState({ cookingStep: null });
+      }
+    }
     if (nextProps.botAnswer != this.state.botAnswer) {
       this.setState({ botAnswer: nextProps.botAnswer}, this.sayBotAnswer );
     }
@@ -38,7 +47,7 @@ class Assistant extends React.Component {
     let category = this.props.category,
     id = this.props.id;
     const launchText = 'Let\' cook something.';
-    let params = { category, id, text: launchText, count: this.state.contextCount };
+    let params = { category, id, text: launchText};
 
     this.props.talkToAssistant(params);
   }
@@ -49,15 +58,11 @@ class Assistant extends React.Component {
         message = 'Sorry, I don\'t understand you.';
     } else {
       message = this.state.botAnswer;
-      //TODO: change this hardcoded method to something better
-      if (~message.indexOf('whole recipe')) {
-        let newCount =+ this.state.contextCount;
-        this.setState({ contextCount: newCount });
-      }
     }
 
      let msg = new SpeechSynthesisUtterance();
      msg.onend = () => {
+       console.log('speech ended');
        this.beginRecognition();
      };
      let voices = window.speechSynthesis.getVoices();
@@ -83,9 +88,16 @@ class Assistant extends React.Component {
       text += event.results[i][0].transcript;
     }
     this.stopRecognition();
+    if (this.state.isCooking && this.state.cookingStep) {
+      console.log('augment cookingStep');
+      let nextStep = this.state.cookingStep + 1;
+      this.setState({ cookingStep: nextStep });
+    }
     let category = this.props.category,
-    id = this.props.id;
-    let params = {category, id, text, count: this.state.contextCount};
+    id = this.props.id,
+    cookingStep = this.state.cookingStep;
+    console.log('cooking step in talk to bot: ', cookingStep);
+    let params = {category, id, text, cookingStep};
     this.props.talkToAssistant(params);
   }
 
@@ -136,8 +148,13 @@ Assistant.propTypes = {
 };
 
 const mapStateToProps = (state, ownProps) => {
-  let answer = state.botTalk[0];
-  return { botAnswer: answer };
+  let answer = state.botTalk.spokenResponse;
+  let isCooking = state.botTalk.isCooking;
+
+  return {
+    botAnswer: answer,
+    isCooking: isCooking
+   };
 };
 
 const mapDispatchToProps = (dispatch) => {
