@@ -1,5 +1,4 @@
 import * as types from './actionTypes';
-//import speechRecognition from '../assistant/speechRecognition';
 
 export function enableAssistant() {
     return { type: types.ENABLE_ASSISTANT };
@@ -23,14 +22,7 @@ export const botAnswerSuccess = (answer) => {
 const assistantApiAddress = 'https://api.api.ai/v1/';
 const accessToken = '76a6961de42c4a989f48fc3130e2fad8';
 
-// const contextsArr = [
-//   'ingredients', 'whole_recipe'
-// ];
-
 export function talkToAssistant(params) {
-  //TODO: you have to handle contexts in a smarter way
-  //let name = contextsArr[params.count];
-  console.log('cooking step: ', params.cookingStep);
   let contexts =[{
     'name': 'recipeContext',
     'lifespan': 10,
@@ -41,6 +33,7 @@ export function talkToAssistant(params) {
       'step': params.cookingStep
     }
   }];
+
   return (dispatch) => {
     let request = {
       method: 'POST',

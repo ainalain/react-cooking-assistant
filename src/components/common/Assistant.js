@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { talkToAssistant } from '../../actions/assistantActions';
+import { createSpeechInstance, createRecognition, composeText } from '../../helpers/speech';
 import Icon from './Icon';
 import AssistantIcon from '../../assets/icons/assistant.svg';
 import SadRobotIcon from '../../assets/icons/sad-robot.svg';
@@ -17,7 +18,7 @@ class Assistant extends React.Component {
       recording: false,
       botAnswer: this.props.botAnswer,
       isCooking: this.props.isCooking,
-      cookingStep: null
+      cookingStep: 0
     };
 
     this.beginRecognition = this.beginRecognition.bind(this);
@@ -32,21 +33,21 @@ class Assistant extends React.Component {
   componentWillReceiveProps(nextProps) {
     if (nextProps.isCooking != this.props.isCooking) {
       this.setState({ isCooking: nextProps.isCooking });
-      if (nextProps.isCooking) {
-        this.setState({ cookingStep: 1 });
-      } else {
-        this.setState({ cookingStep: null });
-      }
     }
-    if (nextProps.botAnswer != this.state.botAnswer) {
-      this.setState({ botAnswer: nextProps.botAnswer}, this.sayBotAnswer );
-    }
+    this.setState({ botAnswer: nextProps.botAnswer}, this.sayBotAnswer );
+  }
+
+  componentWillUnmount() {
+    this.setState({
+      cookingStep: 0
+    });
+    this.recognition = null;
   }
 
   enableAssistant() {
     let category = this.props.category,
     id = this.props.id;
-    const launchText = 'Let\' cook something.';
+    const launchText = `Let's cook ${id} from ${category}.`;
     let params = { category, id, text: launchText};
 
     this.props.talkToAssistant(params);
@@ -55,54 +56,48 @@ class Assistant extends React.Component {
   sayBotAnswer() {
     let message;
     if (!this.state.botAnswer || !this.state.botAnswer.length) {
-        message = 'Sorry, I don\'t understand you.';
+        message = 'Sorry, I don\'t understand you. Can you repeat it please?';
     } else {
       message = this.state.botAnswer;
     }
-
-     let msg = new SpeechSynthesisUtterance();
-     msg.onend = () => {
-       console.log('speech ended');
-       this.beginRecognition();
-     };
-     let voices = window.speechSynthesis.getVoices();
-     msg.voiceURI = "native";
-     msg.text = message;
-     msg.lang = "en-US";
+    let msg = createSpeechInstance(message);
+    msg.addEventListener('end', () => {
+     window.utterances.pop();
+     this.beginRecognition();
+   });
      window.speechSynthesis.speak(msg);
   }
 
   setupRecognition() {
-    this.recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition || window.mozSpeechRecognition || window.msSpeechRecognition)();
-    this.recognition.lang = "en-US";
-    this.recognition.continuous = true;
-		this.recognition.onresult = this.processRecognition.bind(this);
-    this.recognition.onend = this.finishRecognition.bind(this);
+    this.recognition = createRecognition(this,
+      this.processRecognition, this.finishRecognition);
   }
 
   processRecognition(event) {
     this.recognition.onend = null;
 
-    let text = "";
-    for (let i = event.resultIndex; i < event.results.length; ++i) {
-      text += event.results[i][0].transcript;
-    }
+    let text = composeText(event);
     this.stopRecognition();
-    if (this.state.isCooking && this.state.cookingStep) {
+    if (this.state.isCooking) {
       console.log('augment cookingStep');
       let nextStep = this.state.cookingStep + 1;
-      this.setState({ cookingStep: nextStep });
+      this.setState({ cookingStep: nextStep }, this.talkToBot.bind(this, text));
+    } else {
+      this.talkToBot(text);
     }
+  }
+
+  talkToBot(text) {
     let category = this.props.category,
     id = this.props.id,
     cookingStep = this.state.cookingStep;
-    console.log('cooking step in talk to bot: ', cookingStep);
+    console.log('cookingStep: ', cookingStep);
     let params = {category, id, text, cookingStep};
     this.props.talkToAssistant(params);
   }
 
   finishRecognition() {
-    this.respond('Sorry, I cannot hear you.');
+  //  this.respond('Sorry, I cannot hear you.');
     this.setState({ isRecording: false });
     this.stopRecognition();
   }
