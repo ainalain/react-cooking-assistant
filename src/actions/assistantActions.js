@@ -1,24 +1,9 @@
 import * as types from './actionTypes';
 import * as botAPI from '../../config/botAPI';
 
-export function enableAssistant() {
-    return { type: types.ENABLE_ASSISTANT };
-}
-
-export function disableAssistant() {
-    return { type: types.DISABLE_ASSISTANT };
-}
-
 export const botAnswerSuccess = (answer) => {
   return { type: types.BOT_ANSWER_SUCCESS, answer };
 };
-
-// export const launchAssistant = () => {
-//   return (dispatch) => {
-//     console.log('starting assistant');
-//     return speechRecognition.switchRecognition();
-//   };
-// };
 
 export function talkToAssistant(params) {
   let contexts =[{

@@ -81,8 +81,28 @@ describe('RecipePage', () => {
     const fakeFetch = sinon.spy();
     const fakeProps = { recipe, id: 'test-recipe', category: 'Bakery' };
     const componentDidMountSpy = sinon.spy(RecipePage.prototype, 'componentDidMount');
-    const component = mount(<RecipePage fetchData={fakeFetch} {...fakeProps} />);
+  //  const component = mount(<RecipePage fetchData={fakeFetch} {...fakeProps} />);
 
+    const detailedRecipes = { instructions: [recipe], error: null };
+    const botTalk = {
+      spokenResponse: null,
+      isCooking: false,
+      answerTime: null
+    }
+    const store = mockStore({
+      detailedRecipes,
+      botTalk
+    });
+    const match = {
+      params: {
+        category: 'bakery',
+        id: 'test-recipe'
+      }
+    };
+    const component = mount(
+      <Provider store={store}>
+        <ConnectedPage match={match}/>
+      </Provider>)
     expect(RecipePage.prototype.componentDidMount.calledOnce).toBe(true);
     const stateRecipe = component.state().recipe;
     expect(Object.keys(stateRecipe).length).toBeGreaterThan(0);
@@ -93,8 +113,14 @@ describe('RecipePage', () => {
   describe('Connected RecipePage', () => {
     it('with provided state it renders connected RecipePage', () => {
       const detailedRecipes = { instructions: [recipe], error: null };
+      const botTalk = {
+        spokenResponse: null,
+        isCooking: false,
+        answerTime: null
+      }
       const store = mockStore({
-        detailedRecipes
+        detailedRecipes,
+        botTalk
       });
       const match = {
         params: {

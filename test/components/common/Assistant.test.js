@@ -1,12 +1,14 @@
 import expect from 'expect';
 import React from 'react';
 import { shallow  } from 'enzyme';
-import Assistant from '../../../src/components/common/Assistant';
+import ConnectedAssistant, { Assistant } from '../../../src/components/common/Assistant';
 
 describe('Assistant', () => {
+  const category = 'Bakery';
+  const id = 'test-recipe';
   let component;
   beforeEach(() => {
-    component = shallow(<Assistant /> );
+    component = shallow(<Assistant category={category} id={id}/> );
   });
 
   it('renders a button', () => {

@@ -8,7 +8,7 @@ import AssistantIcon from '../../assets/icons/assistant.svg';
 import SadRobotIcon from '../../assets/icons/sad-robot.svg';
 import styles from './Assistant.scss';
 
-class Assistant extends React.Component {
+export class Assistant extends React.Component {
   constructor(props) {
     super(props);
 
@@ -138,7 +138,8 @@ class Assistant extends React.Component {
 }
 
 Assistant.propTypes = {
-  onClick: PropTypes.func.isRequired
+  category: PropTypes.string.isRequired,
+  id: PropTypes.string.isRequired
 };
 
 const mapStateToProps = (state, ownProps) => {
