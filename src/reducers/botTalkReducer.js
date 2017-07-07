@@ -26,7 +26,6 @@ export default function botTalkReducer(state = initialState, action) {
       isCooking = true;
     }
     let timestamp = Math.round(+new Date()/1000);
-    console.log('time: ', timestamp);
       return Object.assign({}, { spokenResponse, isCooking, answerTime: timestamp });
     default:
       return state;

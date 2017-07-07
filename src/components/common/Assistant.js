@@ -31,7 +31,6 @@ class Assistant extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    console.log('next Props: ', nextProps);
     if (nextProps.isCooking != this.props.isCooking) {
       this.setState({ isCooking: nextProps.isCooking });
     }
@@ -58,7 +57,7 @@ class Assistant extends React.Component {
     let message;
     console.log('say bot answer: ', this.state.botAnswer);
     if (!this.state.botAnswer || !this.state.botAnswer.length) {
-        message = 'Sorry, I don\'t understand you. Can you repeat it please?';
+        message = 'Sorry, I don\'t understand you. Can you repeat please?';
     } else {
       message = this.state.botAnswer;
     }
@@ -81,22 +80,10 @@ class Assistant extends React.Component {
     let text = composeText(event);
     this.stopRecognition();
     if (this.state.isCooking) {
-      this.setRightStep(text);
-    } else {
-      this.talkToBot(text);
-    }
-  }
-
-  setRightStep(text) {
-    const repeatRegexp = /repeat/ig;
-    const sayItRegexp = /say it again/ig;
-    let nextStep;
-    if (~text.search(repeatRegexp) || ~text.search(sayItRegexp)) {
-      console.log('this is repeat!');
-      this.talkToBot(text);
-    } else {
       let nextStep = this.state.cookingStep + 1;
       this.setState({ cookingStep: nextStep }, this.talkToBot.bind(this, text));
+    } else {
+      this.talkToBot(text);
     }
   }
 
