@@ -1,4 +1,5 @@
 import * as types from './actionTypes';
+import * as botAPI from '../../config/botAPI';
 
 export function enableAssistant() {
     return { type: types.ENABLE_ASSISTANT };
@@ -19,9 +20,6 @@ export const botAnswerSuccess = (answer) => {
 //   };
 // };
 
-const assistantApiAddress = 'https://api.api.ai/v1/';
-const accessToken = '76a6961de42c4a989f48fc3130e2fad8';
-
 export function talkToAssistant(params) {
   let contexts =[{
     'name': 'recipeContext',
@@ -39,7 +37,7 @@ export function talkToAssistant(params) {
       method: 'POST',
       headers: {
         'Content-type': 'application/json; charset=utf-8',
-        "Authorization": "Bearer " + accessToken
+        "Authorization": "Bearer " + botAPI.accessToken
       },
       body: JSON.stringify({
         query: params.text,
@@ -48,7 +46,7 @@ export function talkToAssistant(params) {
         sessionId: "runKilli"
       })
     };
-      return fetch(assistantApiAddress + 'query?v=20150415', request)
+      return fetch(botAPI.apiAddress + botAPI.query, request)
       .then(res => res.json())
       .then((result) =>  {
         dispatch(botAnswerSuccess(result));
