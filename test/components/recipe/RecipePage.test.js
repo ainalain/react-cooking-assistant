@@ -6,6 +6,7 @@ import configureStore from 'redux-mock-store';
 import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
 import ConnectedPage, { RecipePage } from '../../../src/components/recipe/RecipePage';
+import { Assistant } from '../../../src/components/common/Assistant';
 
 const mockStore = configureStore([thunk]);
 const recipe = {
@@ -77,41 +78,27 @@ describe('RecipePage', () => {
     componentDidMountSpy.restore();
   });
 
+  //in this test don't render page children because Assistant is a connected component
   it('has recipe in state and does not fetch recipe if it has already from props', () => {
+    const fakeRender = sinon.stub(RecipePage.prototype, 'render').returns(null);
     const fakeFetch = sinon.spy();
     const fakeProps = { recipe, id: 'test-recipe', category: 'Bakery' };
     const componentDidMountSpy = sinon.spy(RecipePage.prototype, 'componentDidMount');
-  //  const component = mount(<RecipePage fetchData={fakeFetch} {...fakeProps} />);
+    const component = mount(<RecipePage fetchData={fakeFetch} {...fakeProps} />);
 
-    const detailedRecipes = { instructions: [recipe], error: null };
-    const botTalk = {
-      spokenResponse: null,
-      isCooking: false,
-      answerTime: null
-    }
-    const store = mockStore({
-      detailedRecipes,
-      botTalk
-    });
-    const match = {
-      params: {
-        category: 'bakery',
-        id: 'test-recipe'
-      }
-    };
-    const component = mount(
-      <Provider store={store}>
-        <ConnectedPage match={match}/>
-      </Provider>)
     expect(RecipePage.prototype.componentDidMount.calledOnce).toBe(true);
     const stateRecipe = component.state().recipe;
     expect(Object.keys(stateRecipe).length).toBeGreaterThan(0);
     expect(fakeFetch.calledOnce).toBe(false);
     componentDidMountSpy.restore();
+    fakeRender.restore();
   });
 
   describe('Connected RecipePage', () => {
     it('with provided state it renders connected RecipePage', () => {
+      const assistantDidMountStub = sinon.stub(Assistant.prototype, 'componentDidMount').callsFake(() => {
+        console.log('fake did mount');
+      });
       const detailedRecipes = { instructions: [recipe], error: null };
       const botTalk = {
         spokenResponse: null,
@@ -133,6 +120,7 @@ describe('RecipePage', () => {
           <ConnectedPage match={match}/>
         </Provider>)
       expect(component.find(ConnectedPage).length).toBe(1);
+      assistantDidMountStub.restore();
     });
   });
 });
