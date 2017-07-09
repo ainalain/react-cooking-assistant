@@ -117,6 +117,7 @@ export class Assistant extends React.Component {
   }
 
   render() {
+    let turnoffStyle = this.state.enabled ? '' : styles.hidden;
     return (
       <div className={styles.assistant}>
         <button
@@ -128,13 +129,13 @@ export class Assistant extends React.Component {
           </div>
           <span className={styles.text}>Assistant</span>
         </button>
-        {this.state.enabled ?
-          <button className={styles.turnoff} onClick={this.stopRecognition}>
-          Stop assistant
-          <div className={styles.sadRobot}>
-            <Icon glyph={SadRobotIcon} className={styles.sadIcon} />
-          </div>
-          </button> : null}
+        <button className={`${styles.turnoff} ${turnoffStyle}`}
+         onClick={this.stopRecognition}>
+        Stop assistant
+        <div className={styles.sadRobot}>
+          <Icon glyph={SadRobotIcon} className={styles.sadIcon} />
+        </div>
+        </button>
       </div>
     );
   }
