@@ -9,3 +9,7 @@ dist
 
 #tmp folder produced by mocha-webpack
 .tmp
+
+#istanbul test coverage output
+.nyc_output
+coverage

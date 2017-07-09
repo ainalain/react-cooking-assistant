@@ -1,5 +1,6 @@
 import * as types from './actionTypes';
 import * as botAPI from '../../config/botAPI';
+import { ajaxCallError } from './asyncActions';
 
 export const botAnswerSuccess = (answer) => {
   return { type: types.BOT_ANSWER_SUCCESS, answer };
@@ -28,7 +29,7 @@ export function talkToAssistant(params) {
         query: params.text,
         contexts: contexts,
         lang: "en",
-        sessionId: "runKilli"
+        sessionId: "runTom"
       })
     };
       return fetch(botAPI.apiAddress + botAPI.query, request)
@@ -37,8 +38,7 @@ export function talkToAssistant(params) {
         dispatch(botAnswerSuccess(result));
       }
       ).catch(error => {
-          //dispatch(ajaxCallError(error));
-          throw(error);
+          dispatch(ajaxCallError(error));
       });
   };
 }
