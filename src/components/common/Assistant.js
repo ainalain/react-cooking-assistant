@@ -79,8 +79,11 @@ export class Assistant extends React.Component {
 
     let text = composeText(event);
     this.stopRecognition();
-    if (this.state.isCooking) {
+    if (this.state.isCooking && !this.props.stepBack) {
       let nextStep = this.state.cookingStep + 1;
+      this.setState({ cookingStep: nextStep }, this.talkToBot.bind(this, text));
+    } else if (this.props.stepBack) {
+      let nextStep = this.state.cookingStep - 1;
       this.setState({ cookingStep: nextStep }, this.talkToBot.bind(this, text));
     } else {
       this.talkToBot(text);
@@ -149,7 +152,8 @@ const mapStateToProps = (state, ownProps) => {
   return {
     botAnswer: answer,
     isCooking: isCooking,
-    answerTime: state.botTalk.answerTime
+    answerTime: state.botTalk.answerTime,
+    stepBack: state.botTalk.stepBack
    };
 };
 

@@ -3,9 +3,11 @@ import * as types from '../actions/actionTypes';
 const initialState = {
   spokenResponse: null,
   isCooking: false,
-  answerTime: null
+  answerTime: null,
+  stepBack: false
  };
 const cookingIntents = ['start_reading_steps', 'steps_one_by_one'];
+const prevIntent = 'steps_one_by_one - previous';
 
 /*
  * this reducer returns bot's response as string for Web Speech API and
@@ -25,8 +27,12 @@ export default function botTalkReducer(state = initialState, action) {
     if (~cookingIntents.indexOf(intentName)) {
       isCooking = true;
     }
+    let stepBack = false;
+    if (intentName === prevIntent) {
+      stepBack = true;
+    }
     let timestamp = Math.round(+new Date()/1000);
-      return Object.assign({}, { spokenResponse, isCooking, answerTime: timestamp });
+      return Object.assign({}, { spokenResponse, isCooking, stepBack, answerTime: timestamp });
     default:
       return state;
   }

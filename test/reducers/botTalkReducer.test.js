@@ -7,7 +7,8 @@ describe('Bot talk reducer', () => {
   const initialState = {
     spokenResponse: null,
     isCooking: false,
-    answerTime: null
+    answerTime: null,
+    stepBack: false
    };
   it('should return initial state', () => {
     expect(reducer(undefined, {})).toEqual(initialState);
