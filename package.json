@@ -1,5 +1,5 @@
 {
-  "name": "hands-free-cooking-assistant",
+  "name": "react-cooking-assistant",
   "version": "1.0.0",
   "description": "A hands free cooking assistant based on react and redux.",
   "main": "index.js",
@@ -16,7 +16,10 @@
     "cooking",
     "recipes",
     "react",
-    "redux"
+    "redux",
+    "AI assistant",
+    "bot assistant",
+    "Google API.AI"
   ],
   "author": "Elena Sufieva",
   "license": "ISC",
@@ -69,5 +72,9 @@
     "redux": "^3.7.0",
     "redux-thunk": "^2.2.0",
     "reset-css": "^2.2.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ainalain/react-cooking-assistant"
   }
 }
