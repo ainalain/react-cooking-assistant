@@ -28,7 +28,7 @@ export function loadRecipes() {
 
 export const fetchRecipeData = (category, id) => {
   return (dispatch) => {
-    dispatch(beginAjaxCall());
+  //  dispatch(beginAjaxCall());
     return recipesApi.getRecipeData(category, id).then(recipe => {
       dispatch(fetchRecipeSuccess(recipe));
     }).catch(error => {

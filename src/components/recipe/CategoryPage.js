@@ -29,8 +29,7 @@ export class CategoryPage extends React.Component {
   render() {
     const props = this.props;
     const category = this.state.category;
-
-    if ( this.props.isLoading ) {
+    if ( props.isLoading ) {
          return (<div>Loading...</div>);
     }
     return (<Gallery recipes={this.state.recipes} category={category} />);
