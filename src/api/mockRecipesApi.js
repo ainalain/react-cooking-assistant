@@ -43,18 +43,18 @@ const recipes = [
     serving: "3"
   },
   {
-    id: "cottage-cheese-biscuits",
-    title: "Cottage cheese biscuits",
+    id: "tiramisu",
+    title: "Tiramisu",
     cookingTime: "60",
-    category: "Bakery",
-    serving: "3"
+    category: "Desserts",
+    serving: "6"
   },
   {
     id: 'mild-apple-pie',
     title: 'Mild apple pie',
-    cookingTime: "90",
+    cookingTime: "70",
     category: "Bakery",
-    serving: "3"
+    serving: "6"
   },
   {
     id: 'aunt-beef',
@@ -80,9 +80,9 @@ const recipes = [
   {
     id: 'chocolate-cake',
     title: 'Chocolate cake',
-    cookingTime: "120",
-    category: "Desserts",
-    serving: "3"
+    cookingTime: "50",
+    category: "Bakery",
+    serving: "8"
   },
   {
     id: 'italian-ice-cream',
