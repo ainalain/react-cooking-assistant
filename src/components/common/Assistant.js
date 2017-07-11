@@ -45,6 +45,7 @@ export class Assistant extends React.Component {
   }
 
   enableAssistant() {
+    this.setState({ enabled: true });
     let category = this.props.category,
     id = this.props.id;
     const launchText = `Let's cook ${id} from ${category}.`;
@@ -105,7 +106,6 @@ export class Assistant extends React.Component {
   }
 
   beginRecognition() {
-    this.setState({ enabled: true });
     this.recognition.start();
   }
 
@@ -117,7 +117,8 @@ export class Assistant extends React.Component {
   }
 
   render() {
-    let turnoffStyle = this.state.enabled ? '' : styles.hidden;
+    let buttonAttr = this.state.enabled ? false : true;
+    let turnoffStyle = this.state.enabled ? '' : styles.disabled;
     return (
       <div className={styles.assistant}>
         <button
@@ -130,7 +131,7 @@ export class Assistant extends React.Component {
           <span className={styles.text}>Assistant</span>
         </button>
         <button className={`${styles.turnoff} ${turnoffStyle}`}
-         onClick={this.stopRecognition}>
+         disabled={buttonAttr} onClick={this.stopRecognition}>
         Stop assistant
         <div className={styles.sadRobot}>
           <Icon glyph={SadRobotIcon} className={styles.sadIcon} />

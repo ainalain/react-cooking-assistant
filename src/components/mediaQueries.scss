@@ -2,6 +2,10 @@
   @media (min-width: 299px) and (max-width: 500px) { @content; }
 }
 
+@mixin phone-narrow-only {
+  @media (max-width: 420px) { @content; }
+}
+
 @mixin phone-only {
   @media (max-width: 599px) { @content; }
 }
