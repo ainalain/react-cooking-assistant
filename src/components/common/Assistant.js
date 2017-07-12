@@ -100,7 +100,8 @@ export class Assistant extends React.Component {
   }
 
   finishRecognition() {
-  //  this.respond('Sorry, I cannot hear you.');
+    const errorMessage = 'Sorry, I can\'t hear you. Can you repeat please?';
+    this.setState({ botAnswer: errorMessage }, this.sayBotAnswer );
     this.setState({ isRecording: false });
     this.stopRecognition();
   }

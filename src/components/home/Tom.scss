@@ -1,0 +1,45 @@
+@import '../layout.scss';
+
+$colors: #360745, #f3961c, #E7D84B, #EFEAC5, #1B8798;
+
+$max: 5;
+$stroke-step: 7%;
+
+@keyframes stroke-offset {
+  from {
+    stroke-dashoffset: $stroke-step * $max;
+    stroke-dasharray: 0 $stroke-step * $max*2.5;
+  }
+}
+
+.tomContainer {
+  width: 30%;
+  height: 120px;
+}
+
+.tom {
+  width: 100%;
+  height: 100%;
+
+  padding-left: 20px;
+}
+
+
+.textCopy {
+  font-size: 2rem;
+  fill: none;
+  stroke: white;
+  stroke-dasharray: $stroke-step $stroke-step * ($max - 1);
+  stroke-width: 1px;
+
+  animation: stroke-offset 3s ease-out;
+
+  @for $item from 1 through $max {
+    $stroke-color: nth($colors, $item);
+
+    &:nth-child(#{$item}) {
+      stroke: $stroke-color;
+      stroke-dashoffset: $stroke-step * $item;
+      }
+    }
+  }

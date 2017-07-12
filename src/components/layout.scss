@@ -1,5 +1,6 @@
 @import 'reset-css/reset.css';
 @import './mediaQueries.scss';
+@import './mixins.scss';
 
 * {
   box-sizing: border-box;
@@ -25,3 +26,6 @@ html, body{
 body {
   font-size: 62.5%;
 }
+
+$orange: #f3961c;
+$blue: darken(#25E6F6, 10%);

@@ -1,8 +1,94 @@
 @import '../layout.scss';
+@import 'animate.css/animate.css';
 
 .greetings {
   display: flex;
-  flex-direction: column;
+  min-height: 300px;
+  justify-content: center;
+  align-items: center;
   flex: 0.3;
   padding: 40px 50px 60px;
+  background-color: #CEA58F;
+  background-image: url('../../assets/images/back3.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+
 }
+
+.hiddenHeading {
+  position: absolute;
+  width: 0;
+  height: 0;
+  overflow: hidden;
+  visibility: hidden;
+  color: #fff;
+  background: #fff;
+}
+
+.container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  background: rgba(0, 0, 0, 0.4);
+  color: #fff;
+  -webkit-backdrop-filter: grayscale(1) contrast(3) blur(1px);
+  backdrop-filter: grayscale(1) contrast(3) blur(1px);
+}
+
+.greetingSVG, .aside {
+  flex: 1;
+}
+
+.aside {
+  max-width: 50%;
+  font-style: italic;
+  padding: 10px;
+  margin-left: auto;
+  line-height: 1.8rem;
+}
+
+.hello {
+  line-height: 2.3rem;
+  text-align: center;
+  padding: 10px;
+  font-size: 1.6rem;
+}
+
+.launch {
+  width: 100%;
+  display: flex;
+}
+
+.try {
+  padding: 10px 10px 20px 20px;
+  font-size: 1.6rem;
+}
+
+.animated {
+  composes: animated from 'animate.css';
+}
+
+.shake {
+  composes: shake from 'animate.css';
+}
+
+.button {
+  border: 1px solid $orange;
+  background: $orange;
+
+  @include button();
+}
+
+
+@include phone-narrow-only() {
+  .greetings {
+    background-position: -60px;
+    padding: 0;
+  }
+}
+
+@include desktop-up {
+  .greetings {
+    min-height: 400px;
+  }
+};

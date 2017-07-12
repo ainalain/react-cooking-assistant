@@ -1,12 +1,33 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Tom from './Tom';
+import Icon from '../common/Icon';
+import AssistantIcon from '../../assets/icons/assistant.svg';
 import styles from './Greetings.scss';
 
 const Greetings = () => {
+  let tryOutStyle =`${styles.animated} ${styles.shake}`;
   return (
     <section className={styles.greetings}>
-      <h1>Start cooking without taping and scrolling the recipe!</h1>
-      <p>Hello, this is an experimental site for cooking.</p>
+      <h1 className={styles.hiddenHeading}>Hands-free cooking website</h1>
+      <div className={styles.container}>
+        <Tom  className={styles.greetingSVG} />
+        <aside className={styles.aside}>
+        <p className={styles.typed}>To speak with Tom, you need to allow Chrome permission to access your microphone. Please be sure that your volume is turned&nbsp;on.</p>
+        </aside>
+        <p className={styles.hello}>Hello, this is a cooking website with your personal assistant. His name is Tom and he knows all recipes from this site be heart.</p>
+        <div className={styles.launch}>
+          <p className={`${styles.try} ${tryOutStyle}`}>Want to try now?</p>
+          <button
+            value='submit'
+            className={styles.button}>
+            <div className={styles.robot}>
+              <Icon glyph={AssistantIcon} className={styles.icon} />
+            </div>
+            <span className={styles.text}>Launch Tom</span>
+          </button>
+        </div>
+      </div>
     </section>
   );
 };
