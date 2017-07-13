@@ -62,6 +62,7 @@
 }
 
 .hello {
+    width: 100%;
   padding: 10px;
 
   text-align: center;
@@ -91,29 +92,6 @@
   animation-delay: 0.4s;
 
   composes: shake from 'animate.css';
-}
-
-.button {
-  border: 1px solid $orange;
-  background: $orange;
-
-  @include button();
-}
-.robot {
-  display: flex;
-
-  width: 28px;
-
-}
-
-.icon {
-  cursor: pointer;
-
-  @include size100();
-}
-
-.text {
-  padding-left: 3px;
 }
 
 @include phone-only() {
@@ -166,5 +144,9 @@
 @include desktop-up {
   .greetings {
     min-height: 400px;
+  }
+
+  .hello {
+    font-size: 2rem;
   }
 };

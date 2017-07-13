@@ -1,8 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Tom from './Tom';
-import Icon from '../common/Icon';
-import AssistantIcon from '../../assets/icons/assistant.svg';
+import Assistant from '../common/Assistant';
 import styles from './Greetings.scss';
 
 const Greetings = () => {
@@ -20,14 +19,7 @@ const Greetings = () => {
         <p className={styles.hello}>Hello, this is a cooking website with your personal assistant Tom.</p>
         <div className={styles.launch}>
           <p className={`${styles.try} ${tryOutStyle}`}>Want to try now?</p>
-          <button
-            value='submit'
-            className={styles.button}>
-            <div className={styles.robot}>
-              <Icon glyph={AssistantIcon} className={styles.icon} />
-            </div>
-            <span className={styles.text}>Launch Tom</span>
-          </button>
+          <Assistant category={'desserts'} id={'tiramisu'} intro={true} />
         </div>
       </div>
     </section>

@@ -32,7 +32,6 @@ $stroke-step: 7%;
   stroke-width: 1px;
 
   animation: stroke-offset 2s ease-out;
-  animation-delay: 0.4s;
 
   @for $item from 1 through $max {
     $stroke-color: nth($colors, $item);

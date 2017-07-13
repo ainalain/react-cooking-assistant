@@ -129,23 +129,26 @@ export class Assistant extends React.Component {
           <div className={styles.robot}>
             <Icon glyph={AssistantIcon} className={styles.icon} />
           </div>
-          <span className={styles.text}>Assistant</span>
+          <span className={styles.text}>Launch Tom</span>
         </button>
-        <button className={`${styles.turnoff} ${turnoffStyle}`}
-         disabled={buttonAttr} onClick={this.stopRecognition}>
-        Stop assistant
-        <div className={styles.sadRobot}>
-          <Icon glyph={SadRobotIcon} className={styles.sadIcon} />
+        { this.props.intro ? null :
+          (<button className={`${styles.turnoff} ${turnoffStyle}`}
+            disabled={buttonAttr} onClick={this.stopRecognition}>
+            Disable Tom
+            <div className={styles.sadRobot}>
+            <Icon glyph={SadRobotIcon} className={styles.sadIcon} />
+            </div>
+          </button>)
+        }
         </div>
-        </button>
-      </div>
     );
   }
 }
 
 Assistant.propTypes = {
   category: PropTypes.string.isRequired,
-  id: PropTypes.string.isRequired
+  id: PropTypes.string.isRequired,
+  intro: PropTypes.bool
 };
 
 const mapStateToProps = (state, ownProps) => {
