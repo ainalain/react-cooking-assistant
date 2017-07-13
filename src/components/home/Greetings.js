@@ -11,11 +11,13 @@ const Greetings = () => {
     <section className={styles.greetings}>
       <h1 className={styles.hiddenHeading}>Hands-free cooking website</h1>
       <div className={styles.container}>
-        <Tom  className={styles.greetingSVG} />
+        <div className={styles.tomContainer}>
+          <Tom  className={styles.greetingSVG} />
+        </div>
         <aside className={styles.aside}>
         <p className={styles.typed}>To speak with Tom, you need to allow Chrome permission to access your microphone. Please be sure that your volume is turned&nbsp;on.</p>
         </aside>
-        <p className={styles.hello}>Hello, this is a cooking website with your personal assistant. His name is Tom and he knows all recipes from this site be heart.</p>
+        <p className={styles.hello}>Hello, this is a cooking website with your personal assistant Tom.</p>
         <div className={styles.launch}>
           <p className={`${styles.try} ${tryOutStyle}`}>Want to try now?</p>
           <button

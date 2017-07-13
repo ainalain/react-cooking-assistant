@@ -1,9 +1,13 @@
+/*
+ * This component is a css + svg animation
+ * Snippet taken from a pen by Yoksel: https://codepen.io/yoksel/pen/XJbzrO
+ */
+
 import React from 'react';
 import styles from './Tom.scss';
 
 const Tom = () => {
   return (
-    <div className={styles.tomContainer}>
       <svg viewBox="10 0 140 80" className={styles.tom}>
         <symbol id='text'>
           <text textAnchor='middle' className={styles.textLine}
@@ -29,7 +33,6 @@ const Tom = () => {
             className={styles.textCopy}></use>
         </g>
       </svg>
-    </div>
   );
 };
 

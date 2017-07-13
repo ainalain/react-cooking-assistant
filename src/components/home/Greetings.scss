@@ -3,36 +3,48 @@
 
 .greetings {
   display: flex;
+
   min-height: 300px;
-  justify-content: center;
-  align-items: center;
-  flex: 0.3;
   padding: 40px 50px 60px;
-  background-color: #CEA58F;
+
+  background-color: #374449;
   background-image: url('../../assets/images/back3.jpg');
   background-repeat: no-repeat;
   background-size: cover;
+
+  justify-content: center;
+  align-items: center;
+  flex: 0.3;
 
 }
 
 .hiddenHeading {
   position: absolute;
+
+  visibility: hidden;
+  overflow: hidden;
+
   width: 0;
   height: 0;
-  overflow: hidden;
-  visibility: hidden;
+
   color: #fff;
   background: #fff;
 }
 
 .container {
   display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  background: rgba(0, 0, 0, 0.4);
+  flex-direction: column;
+
   color: #fff;
-  -webkit-backdrop-filter: grayscale(1) contrast(3) blur(1px);
+  background: rgba(0, 0, 0, 0.4);
+
+  flex-wrap: wrap;
   backdrop-filter: grayscale(1) contrast(3) blur(1px);
+}
+
+.tomContainer {
+  height: 120px;
+  margin-top: 30px;
 }
 
 .greetingSVG, .aside {
@@ -40,27 +52,34 @@
 }
 
 .aside {
-  max-width: 50%;
-  font-style: italic;
-  padding: 10px;
   margin-left: auto;
+  padding: 10px;
+
+  text-align: justify;
+
+  font-style: italic;
   line-height: 1.8rem;
 }
 
 .hello {
-  line-height: 2.3rem;
-  text-align: center;
   padding: 10px;
+
+  text-align: center;
+
   font-size: 1.6rem;
+  line-height: 2.3rem;
 }
 
 .launch {
-  width: 100%;
   display: flex;
+
+  width: 100%;
+  padding-bottom: 20px;
 }
 
 .try {
   padding: 10px 10px 20px 20px;
+
   font-size: 1.6rem;
 }
 
@@ -69,6 +88,8 @@
 }
 
 .shake {
+  animation-delay: 0.4s;
+
   composes: shake from 'animate.css';
 }
 
@@ -78,12 +99,67 @@
 
   @include button();
 }
+.robot {
+  display: flex;
+
+  width: 28px;
+
+}
+
+.icon {
+  cursor: pointer;
+
+  @include size100();
+}
+
+.text {
+  padding-left: 3px;
+}
+
+@include phone-only() {
+  padding: 40px 30px 60px;
+};
+
+@include tablet-portrait-up() {
+  .greetings {
+
+  }
+
+  .container {
+    flex-direction: row;
+  }
+
+  .tomContainer {
+    width: 50%;
+  }
+
+  .aside {
+    max-width: 50%;
+  }
+};
+
+@include tablet-landscape-up {
+  .tomContainer {
+    width: 30%;
+  }
+};
 
 
 @include phone-narrow-only() {
   .greetings {
-    background-position: -60px;
     padding: 0;
+
+    background-position: -60px;
+  }
+
+  .aside {
+    padding: 10px 20px;
+  }
+
+  .hello {
+    padding: 10px 20px;
+
+    text-align: justify;
   }
 }
 
