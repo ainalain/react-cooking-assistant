@@ -8,4 +8,19 @@ describe('Greetings', () => {
     const component = shallow(<Greetings />);
     expect(component.find('section').length).toBe(1);
   });
+
+  it('renders an h1 element', () => {
+    const component = shallow(<Greetings />);
+    expect(component.find('h1').length).toBe(1);
+  });
+
+  it('renders a Tom  component', () => {
+    const component = shallow(<Greetings />);
+    expect(component.find('Tom').length).toBe(1);
+  });
+
+  it('renders a button', () => {
+    const component = shallow(<Greetings />);
+    expect(component.find('button').length).toBe(1);
+  });
 });
