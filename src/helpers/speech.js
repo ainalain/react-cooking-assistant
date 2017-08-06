@@ -38,3 +38,16 @@ export const composeText = (event, recognition) => {
   }
   return text;
 };
+
+/*
+ * compose initial user's fake phrase to launch google bot
+ */
+export const getInitialPhrase = ({ id, category, intro }) => {
+  let text = '';
+  if (intro) {
+    text = 'Tell me about this site';
+  } else {
+    text = `Let's cook ${id} from ${category}.`;
+  }
+  return text;
+};

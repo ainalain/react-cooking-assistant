@@ -19,7 +19,7 @@ const Greetings = () => {
         <p className={styles.hello}>Hello, this is a cooking website with your personal assistant Tom.</p>
         <div className={styles.launch}>
           <p className={`${styles.try} ${tryOutStyle}`}>Want to try now?</p>
-          <Assistant category={'desserts'} id={'tiramisu'} intro={true} />
+          <Assistant category={'bakery'} id={'currant-brownie'} intro={true} />
         </div>
       </div>
     </section>

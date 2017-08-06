@@ -7,8 +7,9 @@ export const botAnswerSuccess = (answer) => {
 };
 
 export function talkToAssistant(params) {
+  const contextName = params.context ? params.context : 'recipeContext';
   let contexts =[{
-    'name': 'recipeContext',
+    'name': contextName,
     'lifespan': 10,
     'parameters':
     {

@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { talkToAssistant } from '../../actions/assistantActions';
-import { createSpeechInstance, createRecognition, composeText } from '../../helpers/speech';
+import { createSpeechInstance, createRecognition, composeText, getInitialPhrase } from '../../helpers/speech';
 import Icon from './Icon';
 import AssistantIcon from '../../assets/icons/assistant.svg';
 import SadRobotIcon from '../../assets/icons/sad-robot.svg';
@@ -47,9 +47,11 @@ export class Assistant extends React.Component {
   enableAssistant() {
     this.setState({ enabled: true });
     let category = this.props.category,
-    id = this.props.id;
-    const launchText = `Let's cook ${id} from ${category}.`;
-    let params = { category, id, text: launchText};
+    id = this.props.id,
+    intro = this.props.intro,
+    context = intro ? '' : 'start_cooking';
+    const text = getInitialPhrase({ id, category, intro });
+    let params = { category, id, text, context};
 
     this.props.talkToAssistant(params);
   }

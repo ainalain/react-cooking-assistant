@@ -14,13 +14,13 @@ describe('Greetings', () => {
     expect(component.find('h1').length).toBe(1);
   });
 
-  it('renders a Tom  component', () => {
+  it('renders a Tom component', () => {
     const component = shallow(<Greetings />);
     expect(component.find('Tom').length).toBe(1);
   });
 
-  it('renders a button', () => {
+  it('renders a connected component', () => {
     const component = shallow(<Greetings />);
-    expect(component.find('button').length).toBe(1);
+    expect(component.find('Connect').length).toBe(1);
   });
 });
