@@ -19,12 +19,12 @@ export const createSpeechInstance = (message) => {
  * setup mechanism for natural speech recognition
  * context is a class (Assistant for example) which will use it
  */
-export const createRecognition = (context, onResultMethod, onEndMethod) => {
+export const createRecognition = (context, onResultMethod, onErrorMethod) => {
   const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition || window.mozSpeechRecognition || window.msSpeechRecognition)();
   recognition.lang = "en-US";
   recognition.continuous = true;
   recognition.onresult = onResultMethod.bind(context);
-  recognition.onend = onEndMethod.bind(context);
+  recognition.onerror = onErrorMethod.bind(context);
   return recognition;
 };
 
@@ -50,4 +50,18 @@ export const getInitialPhrase = ({ id, category, intro }) => {
     text = `Let's cook ${id} from ${category}.`;
   }
   return text;
+};
+
+/*
+ * invoke speak method to pronounce bot answer
+ */
+export const speakMessage = ({ message, botEnabled, cb }) => {
+  let msg = createSpeechInstance(message);
+  msg.addEventListener('end', () => {
+   window.utterances.pop();
+   if (botEnabled) {
+     cb();
+   }
+ });
+   window.speechSynthesis.speak(msg);
 };

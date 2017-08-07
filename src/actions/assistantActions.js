@@ -36,6 +36,7 @@ export function talkToAssistant(params) {
       return fetch(botAPI.apiAddress + botAPI.query, request)
       .then(res => res.json())
       .then((result) =>  {
+        console.log('after bot talk');
         dispatch(botAnswerSuccess(result));
       }
       ).catch(error => {

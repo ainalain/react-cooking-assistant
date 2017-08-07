@@ -29,11 +29,22 @@
   @include size100();
 }
 
-.button {
+.launch {
   border: 1px solid $orange;
   background: $orange;
 
   @include button();
+}
+
+.launch:disabled {
+  cursor: default;
+
+  opacity: 0.6;
+  border: 1px solid lighten($orange, 20%);
+  background: lighten($orange, 20%);
+  .icon {
+    opacity: 0.6;
+  }
 }
 
 .turnoff {

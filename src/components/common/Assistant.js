@@ -2,7 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { talkToAssistant } from '../../actions/assistantActions';
-import { createSpeechInstance, createRecognition, composeText, getInitialPhrase } from '../../helpers/speech';
+import { createSpeechInstance, createRecognition, composeText,
+  getInitialPhrase, speakMessage } from '../../helpers/speech';
 import Icon from './Icon';
 import AssistantIcon from '../../assets/icons/assistant.svg';
 import SadRobotIcon from '../../assets/icons/sad-robot.svg';
@@ -22,7 +23,7 @@ export class Assistant extends React.Component {
     };
 
     this.beginRecognition = this.beginRecognition.bind(this);
-    this.stopRecognition = this.stopRecognition.bind(this);
+    this.stopConversation = this.stopConversation.bind(this);
     this.enableAssistant = this.enableAssistant.bind(this);
   }
 
@@ -44,6 +45,12 @@ export class Assistant extends React.Component {
     this.recognition = null;
   }
 
+  clearState() {
+    this.setState({ enabled: false });
+    this.setState({ cookingStep : 0 });
+    this.setState({ isCooking: false });
+  }
+
   enableAssistant() {
     this.setState({ enabled: true });
     let category = this.props.category,
@@ -51,8 +58,11 @@ export class Assistant extends React.Component {
     intro = this.props.intro,
     context = intro ? '' : 'start_cooking';
     const text = getInitialPhrase({ id, category, intro });
-    let params = { category, id, text, context};
+    const params = { category, id, text, context};
 
+    if (!this.recognition) {
+      this.setupRecognition();
+    }
     this.props.talkToAssistant(params);
   }
 
@@ -64,24 +74,20 @@ export class Assistant extends React.Component {
     } else {
       message = this.state.botAnswer;
     }
-    let msg = createSpeechInstance(message);
-    msg.addEventListener('end', () => {
-     window.utterances.pop();
-     this.beginRecognition();
-   });
-     window.speechSynthesis.speak(msg);
+    speakMessage({ message,
+      botEnabled: this.state.enabled, cb: this.beginRecognition });
   }
 
   setupRecognition() {
     this.recognition = createRecognition(this,
-      this.processRecognition, this.finishRecognition);
+      this.processRecognition, this.onRecognitionError);
   }
 
   processRecognition(event) {
     this.recognition.onend = null;
 
     let text = composeText(event);
-    this.stopRecognition();
+    this.recognition.stop();
     if (this.state.isCooking && !this.props.stepBack) {
       let nextStep = this.state.cookingStep + 1;
       this.setState({ cookingStep: nextStep }, this.talkToBot.bind(this, text));
@@ -101,33 +107,42 @@ export class Assistant extends React.Component {
     this.props.talkToAssistant(params);
   }
 
-  finishRecognition() {
-    const errorMessage = 'Sorry, I can\'t hear you. Can you repeat please?';
-    this.setState({ botAnswer: errorMessage }, this.sayBotAnswer );
-    this.setState({ isRecording: false });
-    this.stopRecognition();
+  /*
+   * filter deliberate talk end: if we abort speech recognition,
+   * there will be an error too
+   */
+  onRecognitionError(error) {
+    if (error.error && error.error != 'aborted') {
+      const errorMessage = 'Sorry, I can\'t hear you. Can you repeat please?';
+      this.setState({ botAnswer: errorMessage }, this.sayBotAnswer );
+    }
   }
 
   beginRecognition() {
     this.recognition.start();
   }
 
-  stopRecognition() {
+  stopConversation() {
     if (this.recognition) {
-      this.recognition.stop();
-     this.setState({ enabled: false });
+      this.recognition.abort();
+      this.clearState();
+      const text = 'Stop';
+      this.talkToBot(text);
+      this.recognition = null;
     }
   }
 
   render() {
-    let buttonAttr = this.state.enabled ? false : true;
-    let turnoffStyle = this.state.enabled ? '' : styles.disabled;
+    const turnoffAttr = this.state.enabled ? false : true;
+    const turnoffStyle = this.state.enabled ? '' : styles.disabled;
+    const launchAttr = !turnoffAttr;
+    const launchStyle = this.state.enabled ? styles.disabled : '';
     return (
       <div className={styles.assistant}>
         <button
-          value='submit'
+          value='submit' disabled={launchAttr}
           onClick={this.enableAssistant}
-          className={styles.button}>
+          className={`${styles.launch} ${launchStyle}`}>
           <div className={styles.robot}>
             <Icon glyph={AssistantIcon} className={styles.icon} />
           </div>
@@ -135,7 +150,7 @@ export class Assistant extends React.Component {
         </button>
         { this.props.intro ? null :
           (<button className={`${styles.turnoff} ${turnoffStyle}`}
-            disabled={buttonAttr} onClick={this.stopRecognition}>
+            disabled={turnoffAttr} onClick={this.stopConversation}>
             Disable Tom
             <div className={styles.sadRobot}>
             <Icon glyph={SadRobotIcon} className={styles.sadIcon} />

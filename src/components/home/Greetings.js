@@ -26,8 +26,4 @@ const Greetings = () => {
   );
 };
 
-Greetings.propTypes = {
-
-};
-
 export default Greetings;
