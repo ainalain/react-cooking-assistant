@@ -18,7 +18,8 @@ export class Assistant extends React.Component {
       enabled: false,
       botAnswer: this.props.botAnswer,
       isCooking: this.props.isCooking,
-      cookingStep: 0
+      cookingStep: 0,
+      isRecording: false
     };
 
     this.beginRecognition = this.beginRecognition.bind(this);
@@ -67,6 +68,10 @@ export class Assistant extends React.Component {
   sayBotAnswer() {
     let message;
     console.log('say bot answer: ', this.state.botAnswer);
+    if (this.recognition) {
+      this.setState({ isRecording: false });
+      this.recognition.stop();
+    }
     if (!this.state.botAnswer || !this.state.botAnswer.length) {
         message = 'Sorry, I don\'t understand you. Can you repeat please?';
     } else {
@@ -78,14 +83,16 @@ export class Assistant extends React.Component {
 
   setupRecognition() {
     this.recognition = createRecognition(this,
-      this.processRecognition, this.onRecognitionError);
+      this.processRecognition, this.onRecognitionError, this.onRecognitionEnd);
   }
 
   processRecognition(event) {
     this.recognition.onend = null;
 
     let text = composeText(event);
+    this.setState({ isRecording: false });
     this.recognition.stop();
+
     if (this.state.isCooking && !this.props.stepBack) {
       let nextStep = this.state.cookingStep + 1;
       this.setState({ cookingStep: nextStep }, this.talkToBot.bind(this, text));
@@ -116,18 +123,33 @@ export class Assistant extends React.Component {
     }
   }
 
-  beginRecognition() {
-    if (this.recognition) {
-      this.recognition.start();
+  /*
+   * html5 speech recognition api works reaal bad:
+   * it can stop recording after more than 10 seconds, so you need
+   * to restart listening
+   */
+  onRecognitionEnd(event) {
+    if (this.state.isRecording) {
+      this.beginRecognition();
     }
   }
 
+  beginRecognition() {
+    if (this.recognition) {
+      this.setState({ isRecording: true });
+       this.recognition.start();
+    }
+  }
+
+  /*
+   * stop conversation with api ai agent (exit)
+   */
   stopConversation() {
     stopTalking();
     if (this.recognition) {
       this.recognition.abort();
       this.clearState();
-      const text = 'Stop';
+      const text = 'Stop'; //keyword to end conversation eith apia ai agent
       this.talkToBot(text);
       this.recognition = null;
     }

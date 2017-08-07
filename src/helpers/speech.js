@@ -19,12 +19,16 @@ export const createSpeechInstance = (message) => {
  * setup mechanism for natural speech recognition
  * context is a class (Assistant for example) which will use it
  */
-export const createRecognition = (context, onResultMethod, onErrorMethod) => {
+export const createRecognition = (context, onResultMethod,
+  onErrorMethod, onEndMethod) => {
   const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition || window.mozSpeechRecognition || window.msSpeechRecognition)();
   recognition.lang = "en-US";
   recognition.continuous = true;
   recognition.onresult = onResultMethod.bind(context);
   recognition.onerror = onErrorMethod.bind(context);
+  recognition.addEventListener('end', () => {
+    onEndMethod.call(context);
+   });
   return recognition;
 };
 
