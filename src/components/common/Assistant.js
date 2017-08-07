@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { talkToAssistant } from '../../actions/assistantActions';
 import { createSpeechInstance, createRecognition, composeText,
-  getInitialPhrase, speakMessage } from '../../helpers/speech';
+  getInitialPhrase, speakMessage, stopTalking } from '../../helpers/speech';
 import Icon from './Icon';
 import AssistantIcon from '../../assets/icons/assistant.svg';
 import SadRobotIcon from '../../assets/icons/sad-robot.svg';
@@ -16,7 +16,6 @@ export class Assistant extends React.Component {
     this.recognition = null;
     this.state = {
       enabled: false,
-      recording: false,
       botAnswer: this.props.botAnswer,
       isCooking: this.props.isCooking,
       cookingStep: 0
@@ -39,10 +38,9 @@ export class Assistant extends React.Component {
   }
 
   componentWillUnmount() {
-    this.setState({
-      cookingStep: 0
-    });
+    this.clearState();
     this.recognition = null;
+    stopTalking();
   }
 
   clearState() {
@@ -119,10 +117,13 @@ export class Assistant extends React.Component {
   }
 
   beginRecognition() {
-    this.recognition.start();
+    if (this.recognition) {
+      this.recognition.start();
+    }
   }
 
   stopConversation() {
+    stopTalking();
     if (this.recognition) {
       this.recognition.abort();
       this.clearState();

@@ -65,3 +65,10 @@ export const speakMessage = ({ message, botEnabled, cb }) => {
  });
    window.speechSynthesis.speak(msg);
 };
+
+/*
+ * cancel 'speaking' if need
+ */
+export const stopTalking = () => {
+  window.speechSynthesis.cancel();
+};
