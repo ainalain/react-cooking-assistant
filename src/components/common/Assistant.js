@@ -99,16 +99,20 @@ export class Assistant extends React.Component {
     } else if (this.props.stepBack) {
       let nextStep = this.state.cookingStep - 1;
       this.setState({ cookingStep: nextStep }, this.talkToBot.bind(this, text));
-    } else {
+    } else { console.log('just simple text');
       this.talkToBot(text);
     }
   }
 
   talkToBot(text) {
-    let category = this.props.category,
-    id = this.props.id,
-    cookingStep = this.state.cookingStep;
-    let params = {category, id, text, cookingStep};
+    const {
+      id,
+      category,
+      context
+    } = this.props;
+    console.log('props context: ', this.props.context);
+    const cookingStep = this.state.cookingStep;
+    let params = {category, id, text, cookingStep, context};
     this.props.talkToAssistant(params);
   }
 
@@ -199,7 +203,8 @@ const mapStateToProps = (state, ownProps) => {
     botAnswer: answer,
     isCooking: isCooking,
     answerTime: state.botTalk.answerTime,
-    stepBack: state.botTalk.stepBack
+    stepBack: state.botTalk.stepBack,
+    context: state.botTalk.context,
    };
 };
 

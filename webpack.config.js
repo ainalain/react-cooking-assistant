@@ -28,7 +28,7 @@ const cssLoaders = [
     loader: 'postcss-loader',
     options: {
       plugins: () => {
-        return [autoprefixer]
+        return [autoprefixer];
       }
     }
   }
@@ -67,7 +67,7 @@ module.exports = {
           test: /\.js$/,
             loader: 'babel-loader',
             exclude: /node_modules/,
-            options: { presets: ['es2015', 'react'] }
+            options: { presets: ['es2015', 'stage-0', 'react'] }
         },
         {
           test: /\.(png|jpg)$/i,

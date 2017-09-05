@@ -7,10 +7,11 @@ export const botAnswerSuccess = (answer) => {
 };
 
 export function talkToAssistant(params) {
-  const contextName = params.context ? params.context : 'recipeContext';
+  console.log('params.context: ', params.context);
+  const contextName = params.context ? params.context : 'start_cooking';
   let contexts =[{
     'name': contextName,
-    'lifespan': 10,
+    'lifespan': 1,
     'parameters':
     {
       'category': params.category.toLowerCase(),
