@@ -9,16 +9,22 @@ export const botAnswerSuccess = (answer) => {
 export function talkToAssistant(params) {
   console.log('params.context: ', params.context);
   const contextName = params.context ? params.context : 'start_cooking';
-  let contexts =[{
-    'name': contextName,
-    'lifespan': 1,
-    'parameters':
+  let contexts =[
     {
-      'category': params.category.toLowerCase(),
-      'id': params.id,
-      'step': params.cookingStep
-    }
-  }];
+      'name': 'recipecontext',
+      'lifespan': 1,
+      'parameters': {
+        'category': params.category.toLowerCase(),
+        'id': params.id,
+        'step': params.cookingStep
+      },
+    },
+    {
+      'name': contextName,
+      'lifespan': 1,
+      'parameters': {},
+    },
+  ];
 
   return (dispatch) => {
     let request = {
