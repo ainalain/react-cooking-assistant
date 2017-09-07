@@ -1,12 +1,12 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
-import Header from './Header';
-import HomePage from './HomePage';
-import CategoryPage from '../containers/CategoryPage';
-import RecipePage from '../containers/RecipePage';
+import Header from '../Header';
+import HomePage from '../HomePage';
+import CategoryPage from '../../containers/CategoryPage';
+import RecipePage from '../../containers/RecipePage';
 import styles from './layout.scss';
 
-const App = (props) => (
+export const App = (props) => (
   <div>
     <Header />
     <Switch>

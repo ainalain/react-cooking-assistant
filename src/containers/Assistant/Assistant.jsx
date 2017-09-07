@@ -168,7 +168,7 @@ export class Assistant extends React.Component {
     return (
       <div className={styles.assistant}>
         <button
-          value='submit' disabled={launchAttr}
+          value="submit" disabled={launchAttr}
           onClick={this.enableAssistant}
           className={`${styles.launch} ${launchStyle}`}>
           <div className={styles.robot}>

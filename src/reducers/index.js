@@ -8,7 +8,7 @@ const rootReducer = combineReducers({
   recipes: recipesReducer,
   isLoading: asyncReducer,
   detailedRecipes: detailedRecipesReducer,
-  botTalk: botTalkReducer
+  botTalk: botTalkReducer,
 });
 
 export default rootReducer;

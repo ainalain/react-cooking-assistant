@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import InfoLine from './InfoLine';
+import InfoLine from '../InfoLine';
 import styles from './Card.scss';
 
 const pathToImages = '../../assets/images';

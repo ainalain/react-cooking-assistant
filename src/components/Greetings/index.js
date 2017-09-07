@@ -1,4 +1,4 @@
 /* eslint-disable import/no-named-as-default */
-import Grretings from './Grretings';
+import Greetings from './Greetings';
 
-export default Grretings;
+export default Greetings;

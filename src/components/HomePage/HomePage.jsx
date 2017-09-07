@@ -2,16 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import * as actions from '../../actions/recipeActions';
-import Gallery from '../common/Gallery';
-import Greetings from './Greetings';
+import Gallery from '../Gallery';
+import Greetings from '../Greetings';
 import styles from './HomePage.scss';
 
 
 export class HomePage extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
   render() {
     const props = this.props;
     const category = this.props.match.params.category;
@@ -21,8 +17,8 @@ export class HomePage extends React.Component {
     }
 
     return (<div className={styles.home}>
-        <Greetings />
-        <Gallery recipes={props.recipes} category={category} />
+      <Greetings />
+      <Gallery recipes={props.recipes} category={category} />
       </div>);
   }
 }

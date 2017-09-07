@@ -4,8 +4,8 @@ const initialState = {
   spokenResponse: null,
   isCooking: false,
   answerTime: null,
-  stepBack: false
- };
+  stepBack: false,
+};
 
 const cookingIntents = ['start_reading_steps', 'steps_one_by_one'];
 const prevIntent = 'steps_one_by_one - previous';
@@ -20,7 +20,7 @@ const processAnswer = (state, payload) => {
   console.log('context: ', context);
   let isCooking = false;
 
-  if (~cookingIntents.indexOf(intentName)) {
+  if (cookingIntents.includes(intentName)) {
     isCooking = true;
   }
 
@@ -29,9 +29,16 @@ const processAnswer = (state, payload) => {
   if (intentName === prevIntent) {
     stepBack = true;
   }
-  let timestamp = Math.round(+new Date()/1000);
+  const timestamp = Math.round(+new Date() / 1000);
 
-  return { ...state, spokenResponse, isCooking, stepBack, context: context.name, answerTime: timestamp };
+  return {
+    ...state,
+    spokenResponse,
+    isCooking,
+    stepBack,
+    context: context.name,
+    answerTime: timestamp,
+  };
 };
 
 /*
@@ -39,14 +46,15 @@ const processAnswer = (state, payload) => {
  * isCooking state: if it's true, then we are in the steps queue
  */
 export default function botTalkReducer(state = initialState, action) {
-  switch(action.type) {
+  switch (action.type) {
     case types.BOT_ANSWER_SUCCESS:
-    let debugJSON = action.answer;
-    /* eslint-disable no-console */
-    console.log('bot answer status: ', debugJSON.status);
-    console.log('bot answer result: ', debugJSON.result);
-    const payload = debugJSON.result;
-    return processAnswer(state, payload);
+      const debugJSON = action.answer;
+      /* eslint-disable no-console */
+      console.log('bot answer status: ', debugJSON.status);
+      console.log('bot answer result: ', debugJSON.result);
+      /* eslint-enable no-console */
+      const payload = debugJSON.result;
+      return processAnswer(state, payload);
     default:
       return state;
   }

@@ -15,25 +15,25 @@ export function fetchRecipeError(error) {
 }
 
 export function loadRecipes() {
-  return function(dispatch) {
+  return (dispatch) => {
     dispatch(beginAjaxCall());
     return recipesApi.getAllRecipes().then(recipes => {
       dispatch(loadRecipesSuccess(recipes));
     }).catch(error => {
       dispatch(ajaxCallError(error));
-      throw(error);
+      throw (error);
     });
   };
 }
 
-export const fetchRecipeData = (category, id) => {
-  return (dispatch) => {
+export const fetchRecipeData = (category, id) => (
+  (dispatch) => (
   //  dispatch(beginAjaxCall());
-    return recipesApi.getRecipeData(category, id).then(recipe => {
+    recipesApi.getRecipeData(category, id).then(recipe => {
       dispatch(fetchRecipeSuccess(recipe));
     }).catch(error => {
       dispatch(ajaxCallError(error));
       dispatch(fetchRecipeError(error));
-    });
-  };
-};
+    })
+  )
+);
