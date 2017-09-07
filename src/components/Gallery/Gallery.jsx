@@ -1,7 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import Card from './Card';
+
+import Card from '../Card';
 import styles from './Gallery.scss';
 
 

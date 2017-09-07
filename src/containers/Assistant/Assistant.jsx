@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+
 import { talkToAssistant } from '../../actions/assistantActions';
 import { createSpeechInstance, createRecognition, composeText,
   getInitialPhrase, speakMessage, stopTalking } from '../../helpers/speech';
@@ -73,7 +74,7 @@ export class Assistant extends React.Component {
       this.recognition.stop();
     }
     if (!this.state.botAnswer || !this.state.botAnswer.length) {
-        message = 'Sorry, I don\'t understand you. Can you repeat please?';
+      message = 'Sorry, I don\'t understand you. Can you repeat please?';
     } else {
       message = this.state.botAnswer;
     }
@@ -192,21 +193,16 @@ export class Assistant extends React.Component {
 Assistant.propTypes = {
   category: PropTypes.string.isRequired,
   id: PropTypes.string.isRequired,
-  intro: PropTypes.bool
+  intro: PropTypes.boolean,
 };
 
-const mapStateToProps = (state, ownProps) => {
-  let answer = state.botTalk.spokenResponse;
-  let isCooking = state.botTalk.isCooking;
-
-  return {
-    botAnswer: answer,
-    isCooking: isCooking,
-    answerTime: state.botTalk.answerTime,
-    stepBack: state.botTalk.stepBack,
-    context: state.botTalk.context,
-   };
-};
+const mapStateToProps = ({ botTalk }, ownProps) => ({
+  isCooking: botTalk.isCooking,
+  botAnswer: botTalk.answer,
+  answerTime: botTalk.answerTime,
+  stepBack: botTalk.stepBack,
+  context: botTalk.context,
+});
 
 const mapDispatchToProps = (dispatch) => {
   return {
