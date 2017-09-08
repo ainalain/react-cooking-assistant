@@ -51,19 +51,28 @@ module.exports = {
     hot: true,
     contentBase: path.resolve(__dirname, './src'),
   },
+  resolve: {
+    extensions: ['.js', '.jsx']
+  },
   module: {
     rules: [
       {
         enforce: "pre",
-        test: /\.jsx|js$/,
+        test: /\.jsx|js/,
         exclude: /node_modules/,
         loader: "eslint-loader",
         options: {
+          configFile: '.eslintrc.json',
           emitError: false,
           emitWarning: true,
           failOnWarning: false,
           failOnError: false,
         },
+      },
+      {
+        test: /\.json$/,
+        loader: "json-loader",
+        enforce: "pre",
       },
       {
         test: /\.js|jsx$/,

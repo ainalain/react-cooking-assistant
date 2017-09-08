@@ -16,3 +16,4 @@ releases
 coverage
 build
 dist
+src/api/*.json

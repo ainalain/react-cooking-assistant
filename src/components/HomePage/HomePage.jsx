@@ -7,32 +7,28 @@ import Greetings from '../Greetings';
 import styles from './HomePage.scss';
 
 
-export class HomePage extends React.Component {
-  render() {
-    const props = this.props;
-    const category = this.props.match.params.category;
+export const HomePage = ({ recipes, isLoading, match }) => {
+  //const props = this.props;
+  const category = match.params.category;
 
-    if ( this.props.isLoading ) {
-         return (<div>Loading...</div>);
-    }
-
-    return (<div className={styles.home}>
-      <Greetings />
-      <Gallery recipes={props.recipes} category={category} />
-      </div>);
+  if (isLoading) {
+    return (<div>Loading...</div>);
   }
-}
+
+  return (<div className={styles.home}>
+    <Greetings />
+    <Gallery recipes={recipes} category={category} />
+  </div>);
+};
 
 HomePage.propTypes = {
-  recipes: PropTypes.array,
+  recipes: PropTypes.Array,
   isLoading: PropTypes.number
 };
 
-const mapStateToProps = (state, ownProps) => {
-  return {
-    isLoading: state.isLoading,
-    recipes: state.recipes
-  };
-};
+const mapStateToProps = (state, ownProps) => ({
+  isLoading: state.isLoading,
+  recipes: state.recipes,
+});
 
 export default connect(mapStateToProps)(HomePage);

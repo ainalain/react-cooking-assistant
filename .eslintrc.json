@@ -1,6 +1,5 @@
 {
   "extends": [
-    "eslint:recommended",
     "airbnb"
   ],
   "plugins": [
@@ -21,13 +20,14 @@
     "mocha": true
   },
   "rules": {
-    "quotes": 0,
+    "comma-spacing": "warn",
+    "quotes": 1,
     "no-console": "warn",
     "no-debugger": 1,
     "no-var": 1,
     "semi": [1, "always"],
     "no-case-declarations": "off",
-    "no-trailing-spaces": 0,
+    "no-trailing-spaces": 1,
     "eol-last": 0,
     "no-unused-vars": 0,
     "no-underscore-dangle": 0,
@@ -40,6 +40,7 @@
     "react/jsx-closing-bracket-location": 0,
     "react/jsx-curly-spacing": 1,
     "react/jsx-indent-props": 0,
+    "react/jsx-indent": "warn",
     "react/jsx-key": 1,
     "react/jsx-max-props-per-line": 0,
     "react/jsx-no-bind": [1, {

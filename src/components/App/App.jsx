@@ -6,7 +6,7 @@ import CategoryPage from '../../containers/CategoryPage';
 import RecipePage from '../../containers/RecipePage';
 import styles from './layout.scss';
 
-export const App = (props) => (
+const App = (props) => (
   <div>
     <Header />
     <Switch>

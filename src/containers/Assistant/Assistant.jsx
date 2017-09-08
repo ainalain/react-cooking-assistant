@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { talkToAssistant } from '../../actions/assistantActions';
 import { createSpeechInstance, createRecognition, composeText,
   getInitialPhrase, speakMessage, stopTalking } from '../../helpers/speech';
-import Icon from './Icon';
+import Icon from '../../components/Icon';
 import AssistantIcon from '../../assets/icons/assistant.svg';
 import SadRobotIcon from '../../assets/icons/sad-robot.svg';
 import styles from './Assistant.scss';
@@ -142,7 +142,7 @@ export class Assistant extends React.Component {
   beginRecognition() {
     if (this.recognition) {
       this.setState({ isRecording: true });
-       this.recognition.start();
+      this.recognition.start();
     }
   }
 
@@ -154,14 +154,14 @@ export class Assistant extends React.Component {
     if (this.recognition) {
       this.recognition.abort();
       this.clearState();
-      const text = 'Stop'; //keyword to end conversation eith apia ai agent
+      const text = 'Stop'; // keyword to end conversation eith apia ai agent
       this.talkToBot(text);
       this.recognition = null;
     }
   }
 
   render() {
-    const turnoffAttr = this.state.enabled ? false : true;
+    const turnoffAttr = !this.state.enabled;
     const turnoffStyle = this.state.enabled ? '' : styles.disabled;
     const launchAttr = !turnoffAttr;
     const launchStyle = this.state.enabled ? styles.disabled : '';
@@ -177,15 +177,16 @@ export class Assistant extends React.Component {
           <span className={styles.text}>Launch Tom</span>
         </button>
         { this.props.intro ? null :
-          (<button className={`${styles.turnoff} ${turnoffStyle}`}
+          (<button
+            className={`${styles.turnoff} ${turnoffStyle}`}
             disabled={turnoffAttr} onClick={this.stopConversation}>
             Disable Tom
             <div className={styles.sadRobot}>
-            <Icon glyph={SadRobotIcon} className={styles.sadIcon} />
+              <Icon glyph={SadRobotIcon} className={styles.sadIcon} />
             </div>
           </button>)
         }
-        </div>
+      </div>
     );
   }
 }
@@ -204,10 +205,8 @@ const mapStateToProps = ({ botTalk }, ownProps) => ({
   context: botTalk.context,
 });
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    talkToAssistant: (text) => dispatch(talkToAssistant(text))
-  };
-};
+const mapDispatchToProps = (dispatch) => ({
+  talkToAssistant: (text) => dispatch(talkToAssistant(text))
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(Assistant);

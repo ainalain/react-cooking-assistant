@@ -29,7 +29,7 @@ const InfoLine = ({ card, time, serving, category, id }) => {
 };
 
 InfoLine.propTypes = {
-  id: PropTypes.stins.isRequired,
+  id: PropTypes.string.isRequired,
   time: PropTypes.string.isRequired,
   serving: PropTypes.string.isRequired,
   category: PropTypes.string.isRequired,

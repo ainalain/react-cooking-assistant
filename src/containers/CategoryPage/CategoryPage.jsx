@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import store from '../../store';
-import Gallery from '../common/Gallery';
+import Gallery from '../../components/Gallery';
 
 
 export class CategoryPage extends React.Component {
@@ -17,9 +17,9 @@ export class CategoryPage extends React.Component {
 
   componentWillReceiveProps(nextProps) {
     const nextCategory = nextProps.match.params.category;
-    this.setState({ category: nextCategory.slice()}, () => {
+    this.setState({ category: nextCategory.slice() }, () => {
       const recipes = store.getState().recipes;
-      let newRecipes = recipes.filter(recipe => {
+      const newRecipes = recipes.filter(recipe => {
         return recipe.category.toLowerCase() == this.state.category;
       });
       this.setState({ recipes: newRecipes });
@@ -29,8 +29,8 @@ export class CategoryPage extends React.Component {
   render() {
     const props = this.props;
     const category = this.state.category;
-    if ( props.isLoading ) {
-         return (<div>Loading...</div>);
+    if (props.isLoading) {
+      return (<div>Loading...</div>);
     }
     return (<Gallery recipes={this.state.recipes} category={category} />);
   }
