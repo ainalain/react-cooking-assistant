@@ -13,7 +13,7 @@ export default function detailedRecipesReducer(state = initialState, action) {
       } else {
         recipes = [...state.instructions, action.recipe];
       }
-      return Object.assign({}, { instructions: recipes, error: null });
+      return { ...state, instructions: recipes, error: null };
     case types.FETCH_RECIPE_ERROR:
       const prevRecipes = state.instructions.slice();
       return { ...state, instructions: prevRecipes, error: action.error };

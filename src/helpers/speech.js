@@ -5,13 +5,13 @@
  */
 export const createSpeechInstance = (message) => {
   window.utterances = [];
-  let msg = new SpeechSynthesisUtterance(message);
+  const msg = new SpeechSynthesisUtterance(message);
   msg.lang = 'en-US';
   msg.rate = 1;
   msg.pitch = 1;
-  let voices = window.speechSynthesis.getVoices();
+  const voices = window.speechSynthesis.getVoices();
   msg.voiceURI = 'native';
-  window.utterances.push( msg );
+  window.utterances.push(msg);
   return msg;
 };
 
@@ -21,14 +21,17 @@ export const createSpeechInstance = (message) => {
  */
 export const createRecognition = (context, onResultMethod,
   onErrorMethod, onEndMethod) => {
-  const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition || window.mozSpeechRecognition || window.msSpeechRecognition)();
-  recognition.lang = "en-US";
+  const recognition = new (window.SpeechRecognition
+    || window.webkitSpeechRecognition
+    || window.mozSpeechRecognition
+    || window.msSpeechRecognition)();
+  recognition.lang = 'en-US';
   recognition.continuous = true;
   recognition.onresult = onResultMethod.bind(context);
   recognition.onerror = onErrorMethod.bind(context);
   recognition.addEventListener('end', () => {
     onEndMethod.call(context);
-   });
+  });
   return recognition;
 };
 
@@ -37,7 +40,7 @@ export const createRecognition = (context, onResultMethod,
  */
 export const composeText = (event, recognition) => {
   let text = '';
-  for (let i = event.resultIndex; i < event.results.length; ++i) {
+  for (let i = event.resultIndex; i < event.results.length; +i) {
     text += event.results[i][0].transcript;
   }
   return text;
@@ -60,14 +63,16 @@ export const getInitialPhrase = ({ id, category, intro }) => {
  * invoke speak method to pronounce bot answer
  */
 export const speakMessage = ({ message, botEnabled, cb }) => {
-  let msg = createSpeechInstance(message);
+  console.log('speak: ', message);
+  console.log('cb: ', cb);
+  const msg = createSpeechInstance(message);
   msg.addEventListener('end', () => {
-   window.utterances.pop();
-   if (botEnabled) {
-     cb();
-   }
- });
-   window.speechSynthesis.speak(msg);
+    window.utterances.pop();
+    if (botEnabled) {
+      cb();
+    }
+  });
+  window.speechSynthesis.speak(msg);
 };
 
 /*

@@ -15,50 +15,51 @@ export class RecipePage extends React.Component {
   }
 
   componentDidMount() {
-    if (typeof(this.state.recipe) === 'undefined') {
+    if (!Object.keys(this.state.recipe).length) {
       this.props.fetchData(this.props.category, this.props.id);
     }
   }
 
-  componentWillReceiveProps(nextProps) {
-    const recipe = this.props.recipe;
-    if ((typeof recipe === 'undefined') || recipe.id !== nextProps.recipe.id) {
-      this.setState({ recipe: Object.assign({}, nextProps.recipe) });
+  componentWillReceiveProps({ recipe }) {
+    const oldRecipe = this.props.recipe;
+    if ((typeof oldRecipe === 'undefined') || oldRecipe.id !== recipe.id) {
+      this.setState({ recipe });
     }
   }
 
   render() {
     const recipe = this.state.recipe;
-    if (!recipe) {
+    if (!recipe || !Object.keys(recipe).length) {
       return (<div>Loading...</div>);
     }
     return (<Recipe recipe={recipe} key={recipe.id} />);
   }
 }
 
+RecipePage.defaultProps = {
+  recipe: {},
+  fetchData: undefined,
+};
+
 RecipePage.propTypes = {
   id: PropTypes.string.isRequired,
   category: PropTypes.string.isRequired,
-  recipe: PropTypes.Object,
+  recipe: PropTypes.object,
   fetchData: PropTypes.func,
 };
 
-const mapStateToProps = (state, ownProps) => {
-  const category = ownProps.match.params.category;
-  const id = ownProps.match.params.id;
-  const getCurrentRecipe = (id) => (
-    state.detailedRecipes.instructions
-    .find(recipe => (recipe.id === id)));
-  const currentRecipe = getCurrentRecipe(id);
-  return {
-    id,
-    category,
-    recipe: currentRecipe,
-  };
-};
+const recipeSelector = ({ instructions }, id) => (
+  instructions.find(recipe => (recipe.id === id))
+);
+
+const mapStateToProps = ({ detailedRecipes }, { match }) => ({
+  id: match.params.id,
+  category: match.params.category,
+  recipe: recipeSelector(detailedRecipes, match.params.id),
+});
 
 const mapDispatchToProps = (dispatch) => ({
-  fetchData: (category, id) => dispatch(fetchRecipeData(category, id))
+  fetchData: (category, id) => dispatch(fetchRecipeData(category, id)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(RecipePage);

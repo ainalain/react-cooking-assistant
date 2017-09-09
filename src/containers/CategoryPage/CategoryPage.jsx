@@ -11,7 +11,7 @@ export class CategoryPage extends React.Component {
 
     this.state = {
       category: this.props.match.params.category,
-      recipes: this.props.recipes
+      recipes: this.props.recipes,
     };
   }
 
@@ -19,9 +19,9 @@ export class CategoryPage extends React.Component {
     const nextCategory = nextProps.match.params.category;
     this.setState({ category: nextCategory.slice() }, () => {
       const recipes = store.getState().recipes;
-      const newRecipes = recipes.filter(recipe => {
-        return recipe.category.toLowerCase() == this.state.category;
-      });
+      const newRecipes = recipes.filter(recipe => (
+        recipe.category.toLowerCase() === this.state.category
+      ));
       this.setState({ recipes: newRecipes });
     });
   }
@@ -36,23 +36,26 @@ export class CategoryPage extends React.Component {
   }
 }
 
-CategoryPage.propTypes = {
-  recipes: PropTypes.array,
-  isLoading: PropTypes.number
+CategoryPage.defaultProps = {
+  recipes: [],
+  isLoading: false,
+  match: {},
 };
 
-const mapStateToProps = (state, ownProps) => {
-  const category = ownProps.match.params.category;
-  const getCategorizedRecipes = (category) => {
-    return state.recipes.filter(recipe => {
-      return recipe.category.toLowerCase() == category;
-    });
-  };
-  const recipes = getCategorizedRecipes(category);
-  return {
-    isLoading: state.isLoading,
-    recipes: recipes
-  };
+CategoryPage.propTypes = {
+  recipes: PropTypes.array,
+  isLoading: PropTypes.number, // eslint-disable-line
+  match: PropTypes.object,
 };
+
+const recipesSelector = (recipes, category) => (
+  recipes.filter(recipe => (
+    recipe.category.toLowerCase() === category
+)));
+
+const mapStateToProps = ({ recipes, isLoading }, { match }) => ({
+  recipes: recipesSelector(recipes, match.params.category),
+  isLoading,
+});
 
 export default connect(mapStateToProps)(CategoryPage);

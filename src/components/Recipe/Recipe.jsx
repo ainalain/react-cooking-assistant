@@ -31,7 +31,7 @@ const Recipe = ({ recipe }) => (
 
 
 Recipe.propTypes = {
-  recipe: PropTypes.Object.isRequired,
+  recipe: PropTypes.object.isRequired,
 };
 
 export default Recipe;

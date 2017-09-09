@@ -28,12 +28,20 @@ const InfoLine = ({ card, time, serving, category, id }) => {
   );
 };
 
+InfoLine.defaultProps = {
+  card: false,
+  category: null,
+  id: null,
+  time: '30',
+  serving: '3',
+};
+
 InfoLine.propTypes = {
-  id: PropTypes.string.isRequired,
-  time: PropTypes.string.isRequired,
-  serving: PropTypes.string.isRequired,
-  category: PropTypes.string.isRequired,
-  card: PropTypes.boolean,
+  serving: PropTypes.string,
+  time: PropTypes.string,
+  category: PropTypes.string,
+  card: PropTypes.bool,
+  id: PropTypes.string,
 };
 
 export default InfoLine;

@@ -1,3 +1,4 @@
+/* eslint-disable quotes */
 import * as fish from './fish.json';
 import * as meat from './meat.json';
 import * as bakery from './bakery.json';

@@ -9,7 +9,7 @@ import '../config/Reactotron.config';
 import store from './store';
 
 const history = createBrowserHistory();
-console.log('app: ', App);
+
 render(<Provider store={store}>
   <Router history={history}>
     <App />

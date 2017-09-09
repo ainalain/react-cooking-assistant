@@ -15,7 +15,7 @@ const Card = ({ recipe }) => (
     </div>
     <div className={styles.info}>
       <div className={styles.title}>{recipe.title}</div>
-      <InfoLine card="true" time={recipe.cookingTime} serving={recipe.serving} />
+      <InfoLine card time={recipe.cookingTime} serving={recipe.serving} />
     </div>
   </div>
 );

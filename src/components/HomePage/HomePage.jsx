@@ -8,7 +8,6 @@ import styles from './HomePage.scss';
 
 
 export const HomePage = ({ recipes, isLoading, match }) => {
-  //const props = this.props;
   const category = match.params.category;
 
   if (isLoading) {
@@ -21,9 +20,16 @@ export const HomePage = ({ recipes, isLoading, match }) => {
   </div>);
 };
 
+HomePage.defaultProps = {
+  recipes: [],
+  isLoading: false,
+  match: undefined,
+};
+
 HomePage.propTypes = {
-  recipes: PropTypes.Array,
-  isLoading: PropTypes.number
+  recipes: PropTypes.array,
+  isLoading: PropTypes.number,
+  match: PropTypes.object,
 };
 
 const mapStateToProps = (state, ownProps) => ({

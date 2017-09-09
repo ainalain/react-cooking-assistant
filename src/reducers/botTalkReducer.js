@@ -12,7 +12,7 @@ const prevIntent = 'steps_one_by_one - previous';
 const initCookingIntents = ['read_ingredients', 'recipe_summary'];
 
 const processAnswer = (state, payload) => {
-  const spokenResponse = payload.fulfillment.speech;
+  const answer = payload.fulfillment.speech;
   const intentName = payload.metadata.intentName;
   const length = payload.contexts.length;
   const context = payload.contexts[length - 1];
@@ -33,7 +33,7 @@ const processAnswer = (state, payload) => {
 
   return {
     ...state,
-    spokenResponse,
+    answer,
     isCooking,
     stepBack,
     context: context.name,
