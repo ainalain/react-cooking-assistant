@@ -1,22 +1,22 @@
 import expect from 'expect';
 import React from 'react';
-import { shallow  } from 'enzyme';
+import { shallow } from 'enzyme';
 import Recipe from './Recipe';
 
 const recipe = {
-    'id': 'test-recipe',
-    'title': 'Test recipe',
-    'cookingTime': '45',
-    'category': 'Bakery',
-    'serving': '3',
-    'ingredients': ['3 apples', '1/2 cup white sugar','1/2 cup flour'],
-    'steps': ['step 1', 'step 2','step 3']
-  };
+  id: 'test-recipe',
+  title: 'Test recipe',
+  cookingTime: '45',
+  category: 'Bakery',
+  serving: '3',
+  ingredients: ['3 apples', '1/2 cup white sugar', '1/2 cup flour'],
+  steps: ['step 1', 'step 2', 'step 3'],
+};
 
 describe('Recipe component', () => {
   let component;
   beforeEach(() => {
-    component = shallow(<Recipe recipe={recipe} /> );
+    component = shallow(<Recipe recipe={recipe} />);
   });
 
   it('renders section tag', () => {

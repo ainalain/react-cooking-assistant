@@ -1,17 +1,17 @@
 import expect from 'expect';
 import React from 'react';
-import { shallow  } from 'enzyme';
+import { shallow } from 'enzyme';
 import ItemsList from './ItemsList';
 
 const props = {
   title: 'test-list',
-  items: ['a', 'b', 'c', 'd']
+  items: ['a', 'b', 'c', 'd'],
 };
 
 describe('ItemsList', () => {
   let component;
   beforeEach(() => {
-    component = shallow(<ItemsList {...props} /> );
+    component = shallow(<ItemsList {...props} />);
   });
   it('renders an h2 with provided text', () => {
     expect(component.find('h2').length).toBe(1);

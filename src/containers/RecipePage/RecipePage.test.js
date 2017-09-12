@@ -1,7 +1,8 @@
+/* eslint-disable no-undef */
 import 'jsdom-global/register';
 import expect from 'expect';
 import React from 'react';
-import { shallow, mount  } from 'enzyme';
+import { shallow, mount } from 'enzyme';
 import configureStore from 'redux-mock-store';
 import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
@@ -10,23 +11,23 @@ import { Assistant } from '../Assistant';
 
 const mockStore = configureStore([thunk]);
 const recipe = {
-    'id': 'test-recipe',
-    'title': 'Test recipe',
-    'cookingTime': '45',
-    'category': 'Bakery',
-    'serving': '3',
-    'ingredients': ['3 apples', '1/2 cup white sugar','1/2 cup flour'],
-    'steps': ['step 1', 'step 2','step 3']
-  };
+  id: 'test-recipe',
+  title: 'Test recipe',
+  cookingTime: '45',
+  category: 'Bakery',
+  serving: '3',
+  ingredients: ['3 apples', '1/2 cup white sugar', '1/2 cup flour'],
+  steps: ['step 1', 'step 2', 'step 3'],
+};
 
 const setup = (hasRecipe) => {
   const id = 'test-recipe';
   const category = 'Bakery';
-  let propRecipe = hasRecipe ? recipe : undefined;
+  const propRecipe = hasRecipe ? recipe : undefined;
   const props = {
     id,
     category,
-    recipe: propRecipe
+    recipe: propRecipe,
   };
   return shallow(<RecipePage {...props} />);
 };
@@ -50,18 +51,18 @@ describe('RecipePage', () => {
 
     expect(spy.calledOnce).toBe(false);
     const newRecipe = {
-        'id': 'new-test-recipe',
-        'title': 'New Test recipe',
-        'cookingTime': '45',
-        'category': 'Bakery',
-        'serving': '5',
-        'ingredients': ['3 apples', '1/2 cup white sugar','1/2 cup flour'],
-        'steps': ['step 1', 'step 2','step 3']
-      };
+      id: 'new-test-recipe',
+      title: 'New Test recipe',
+      cookingTime: '45',
+      category: 'Bakery',
+      serving: '5',
+      ingredients: ['3 apples', '1/2 cup white sugar', '1/2 cup flour'],
+      steps: ['step 1', 'step 2', 'step 3'],
+    };
     component.setProps({
       recipe: newRecipe,
       id: 'new-test-recipe',
-      category: 'Bakery'
+      category: 'Bakery',
     });
     expect(spy.calledOnce).toBe(true);
     expect(component.find('Recipe').length).toBe(1);
@@ -70,15 +71,16 @@ describe('RecipePage', () => {
   it('calls componentDidMount method after page is rendered', () => {
     const fakeFetch = sinon.spy();
     const componentDidMountSpy = sinon.spy(RecipePage.prototype, 'componentDidMount');
-    const component = mount(<RecipePage fetchData={fakeFetch}
-      id='test-recipe' category='Bakery' />);
+    const component = mount(<RecipePage
+      fetchData={fakeFetch}
+      id="test-recipe" category="Bakery" />);
 
     expect(RecipePage.prototype.componentDidMount.calledOnce).toBe(true);
     expect(fakeFetch.calledOnce).toBe(true);
     componentDidMountSpy.restore();
   });
 
-  //in this test don't render page children because Assistant is a connected component
+  // in this test don't render page children because Assistant is a connected component
   it('has recipe in state and does not fetch recipe if it has already from props', () => {
     const fakeRender = sinon.stub(RecipePage.prototype, 'render').returns(null);
     const fakeFetch = sinon.spy();
@@ -96,29 +98,29 @@ describe('RecipePage', () => {
 
   describe('Connected RecipePage', () => {
     it('with provided state it renders connected RecipePage', () => {
-      const assistantDidMountStub = sinon.stub(Assistant.prototype, 'componentDidMount').callsFake(() => {
+      const assistantDidMountStub = sinon.stub(RecipePage.prototype, 'componentDidMount').callsFake(() => {
         console.log('fake did mount');
       });
       const detailedRecipes = { instructions: [recipe], error: null };
       const botTalk = {
         spokenResponse: null,
         isCooking: false,
-        answerTime: null
-      }
+        answerTime: null,
+      };
       const store = mockStore({
         detailedRecipes,
-        botTalk
+        botTalk,
       });
       const match = {
         params: {
           category: 'bakery',
-          id: 'test-recipe'
-        }
+          id: 'test-recipe',
+        },
       };
-      const component = mount(
+      const component = shallow(
         <Provider store={store}>
-          <ConnectedPage match={match}/>
-        </Provider>)
+          <ConnectedPage match={match} />
+        </Provider>);
       expect(component.find(ConnectedPage).length).toBe(1);
       assistantDidMountStub.restore();
     });

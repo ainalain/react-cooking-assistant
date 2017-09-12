@@ -1,7 +1,7 @@
 import 'jsdom-global/register';
 import expect from 'expect';
 import React from 'react';
-import { shallow, mount  } from 'enzyme';
+import { shallow, mount } from 'enzyme';
 import configureStore from 'redux-mock-store';
 import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
@@ -12,27 +12,27 @@ const mockStore = configureStore([thunk]);
 const setup = (isLoading) => {
   const match = {
     params: {
-      category: null
-    }
+      category: null,
+    },
   };
   const recipes = isLoading ? [] : [
     {
       id: 'baked-pork',
       title: 'Baked pork',
-      cookingTime: "120",
-      category: "Meat"
+      cookingTime: '120',
+      category: 'Meat',
     },
     {
       id: 'chocolate-cake',
       title: 'Chocolate cake',
-      cookingTime: "120",
-      category: "Desserts"
-    }
+      cookingTime: '120',
+      category: 'Desserts',
+    },
   ];
   const props = {
     isLoading,
     recipes,
-    match
+    match,
   };
   return shallow(<CategoryPage {...props} />);
 };
@@ -54,17 +54,18 @@ describe('CategoryPage', () => {
     it('it renders connected component', () => {
       const store = mockStore({
         isLoading: 1,
-        recipes: []
+        recipes: [],
       });
       const match = {
         params: {
-          category: 'desserts'
-        }
+          category: 'desserts',
+        },
       };
       const component = mount(
         <Provider store={store}>
-          <ConnectedPage match={match}/>
-        </Provider>)
+          <ConnectedPage match={match} />
+        </Provider>);
+
       expect(component.find(ConnectedPage).length).toBe(1);
     });
   });

@@ -1,32 +1,32 @@
 import expect from 'expect';
 import React from 'react';
-import { shallow  } from 'enzyme';
+import { shallow } from 'enzyme';
 import { HomePage } from './HomePage';
 
 const setup = (isLoading) => {
   const match = {
     params: {
-      category: null
-    }
+      category: null,
+    },
   };
   const recipes = isLoading ? [] : [
     {
       id: 'baked-pork',
       title: 'Baked pork',
-      cookingTime: "120",
-      category: "Meat"
+      cookingTime: '120',
+      category: 'Meat',
     },
     {
       id: 'chocolate-cake',
       title: 'Chocolate cake',
-      cookingTime: "120",
-      category: "Desserts"
-    }
+      cookingTime: '120',
+      category: 'Desserts',
+    },
   ];
   const props = {
     isLoading,
     recipes,
-    match
+    match,
   };
   return shallow(<HomePage {...props} />);
 };

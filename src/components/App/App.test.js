@@ -12,11 +12,11 @@ describe('App', () => {
   });
 
   it('contains everything else that gets rendered', () => {
-      const component = shallow(<App />);
-      const divs = component.find('div');
-      const wrappingDiv = divs.first();
-      expect(wrappingDiv.children()).toEqual(component.children());
-    });
+    const component = shallow(<App />);
+    const divs = component.find('div');
+    const wrappingDiv = divs.first();
+    expect(wrappingDiv.children()).toEqual(component.children());
+  });
 
   it('renders Header component', () => {
     const component = shallow(<App />);

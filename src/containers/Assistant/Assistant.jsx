@@ -119,7 +119,7 @@ export class Assistant extends React.Component {
     } = this.props;
     const context = intro ? '' : 'start_cooking';
     const text = getInitialPhrase({ id, category, intro });
-    const params = { category, id, text, context };
+      const params = { category, id, text, context };
 
     if (!this.recognition) {
       this.setupRecognition();

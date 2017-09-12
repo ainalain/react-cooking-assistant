@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 import 'jsdom-global/register';
 import expect from 'expect';
 import React from 'react';
@@ -43,7 +44,7 @@ describe('Assistant', () => {
     const component = mount(<Assistant id={id} category={category} />);
     component.setProps({
       id: 'new-test-id',
-      category: 'new-test-category'
+      category: 'new-test-category',
     });
 
     expect(componentDidMountStub.calledOnce).toBe(true);

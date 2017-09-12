@@ -8,15 +8,15 @@ const props = {
   recipe: {
     id: 'chocolate-cake',
     title: 'Chocolate cake',
-    cookingTime: "120",
-    category: "Desserts",
+    cookingTime: '120',
+    category: 'Desserts',
   },
 };
 
 describe('Card', () => {
   let component;
   beforeEach(() => {
-    component = shallow(<Card {...props} /> );
+    component = shallow(<Card {...props} />);
   });
 
   it('renders a div with "card" style', () => {

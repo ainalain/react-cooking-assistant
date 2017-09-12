@@ -1,13 +1,13 @@
 import expect from 'expect';
 import React from 'react';
-import { shallow  } from 'enzyme';
-import Header from './Header';
+import { shallow } from 'enzyme';
+import { Header } from './Header';
 
 
 describe('Header', () => {
   let component;
   beforeEach(() => {
-    component = shallow(<Header /> );
+    component = shallow(<Header />);
   });
 
   it('renders a header tag', () => {

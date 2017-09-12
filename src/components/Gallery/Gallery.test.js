@@ -1,6 +1,6 @@
 import expect from 'expect';
 import React from 'react';
-import { shallow  } from 'enzyme';
+import { shallow } from 'enzyme';
 import Gallery from './Gallery';
 import styles from './Gallery.scss';
 
@@ -10,22 +10,22 @@ const props = {
     {
       id: 'baked-pork',
       title: 'Baked pork',
-      cookingTime: "120",
-      category: "Meat"
+      cookingTime: '120',
+      category: 'Meat',
     },
     {
       id: 'chocolate-cake',
       title: 'Chocolate cake',
-      cookingTime: "120",
-      category: "Desserts"
-    }
-  ]
+      cookingTime: '120',
+      category: 'Desserts',
+    },
+  ],
 };
 
 describe('Gallery', () => {
   let component;
   beforeEach(() => {
-    component = shallow(<Gallery {...props} /> );
+    component = shallow(<Gallery {...props} />);
   });
 
   it('renders a section tag', () => {
