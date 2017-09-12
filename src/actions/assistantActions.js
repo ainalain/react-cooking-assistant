@@ -37,8 +37,8 @@ export function talkToAssistant(params) {
       body: JSON.stringify({
         contexts,
         query: params.text,
-        lang: "en",
-        sessionId: "runTom",
+        lang: 'en',
+        sessionId: 'runTom',
       }),
     };
 

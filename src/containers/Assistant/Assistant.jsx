@@ -93,8 +93,6 @@ export class Assistant extends React.Component {
   sayBotAnswer() {
     let message;
     console.log('say bot answer: ', this.state.botAnswer);
-    console.log('this recognition: ', this.recognition);
-    console.log('enabled: ', this.state.enabled);
     if (this.recognition) {
       this.setState({ isRecording: false });
       this.recognition.stop();
@@ -142,7 +140,7 @@ export class Assistant extends React.Component {
       context,
       talkToAssistant,
     } = this.props;
-    console.log('props context: ', context);
+
     const cookingStep = this.state.cookingStep;
     const params = { category, id, text, cookingStep, context };
     talkToAssistant(params);
@@ -151,7 +149,7 @@ export class Assistant extends React.Component {
   beginRecognition() {
     if (this.recognition) {
       this.setState({ isRecording: true });
-      console.log('start recognition');
+
       this.recognition.start();
     }
   }

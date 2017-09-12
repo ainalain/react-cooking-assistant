@@ -38,10 +38,10 @@ export const createRecognition = (context, onResultMethod,
 /*
  * make text from speechRecognition resut event payload
  */
-export const composeText = (event, recognition) => {
+export const composeText = ({ results, resultIndex }, recognition) => {
   let text = '';
-  for (let i = event.resultIndex; i < event.results.length; +i) {
-    text += event.results[i][0].transcript;
+  for (let i = resultIndex; i < results.length; ++i) { // eslint-disable-line no-plusplus
+    text += results[i][0].transcript;
   }
   return text;
 };
@@ -63,8 +63,6 @@ export const getInitialPhrase = ({ id, category, intro }) => {
  * invoke speak method to pronounce bot answer
  */
 export const speakMessage = ({ message, botEnabled, cb }) => {
-  console.log('speak: ', message);
-  console.log('cb: ', cb);
   const msg = createSpeechInstance(message);
   msg.addEventListener('end', () => {
     window.utterances.pop();

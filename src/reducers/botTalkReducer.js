@@ -15,7 +15,7 @@ const processAnswer = (state, payload) => {
   const answer = payload.fulfillment.speech;
   const intentName = payload.metadata.intentName;
   const length = payload.contexts.length;
-  const context = payload.contexts[length - 1];
+  const context = payload.contexts[length - 1] || {};
 
   console.log('context: ', context);
   let isCooking = false;
