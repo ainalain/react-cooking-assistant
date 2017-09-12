@@ -1,8 +1,8 @@
 import expect from 'expect';
 import React from 'react';
 import { shallow  } from 'enzyme';
-import InfoLine from '../../../src/components/common/InfoLine';
-import styles from '../../../src/components/common/InfoLine.scss';
+import InfoLine from './InfoLine';
+import styles from './InfoLine.scss';
 
 const props = {
   time: '30',

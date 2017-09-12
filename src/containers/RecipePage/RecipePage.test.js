@@ -5,8 +5,8 @@ import { shallow, mount  } from 'enzyme';
 import configureStore from 'redux-mock-store';
 import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
-import ConnectedPage, { RecipePage } from '../../../src/components/recipe/RecipePage';
-import { Assistant } from '../../../src/components/common/Assistant';
+import ConnectedPage, { RecipePage } from './RecipePage';
+import { Assistant } from '../Assistant';
 
 const mockStore = configureStore([thunk]);
 const recipe = {

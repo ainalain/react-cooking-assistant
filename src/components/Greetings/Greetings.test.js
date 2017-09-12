@@ -1,7 +1,7 @@
 import expect from 'expect';
 import React from 'react';
 import { shallow  } from 'enzyme';
-import Greetings from '../../../src/components/home/Greetings';
+import Greetings from './Greetings';
 
 describe('Greetings', () => {
   it('renders an section element', () => {

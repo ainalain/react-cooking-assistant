@@ -1,7 +1,7 @@
 import expect from 'expect';
 import React from 'react';
 import { shallow  } from 'enzyme';
-import Header from '../../../src/components/common/Header';
+import Header from './Header';
 
 
 describe('Header', () => {

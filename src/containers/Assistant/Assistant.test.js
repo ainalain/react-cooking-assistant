@@ -5,7 +5,7 @@ import { shallow, mount } from 'enzyme';
 import configureStore from 'redux-mock-store';
 import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
-import ConnectedAssistant, { Assistant } from '../../../src/components/common/Assistant';
+import ConnectedAssistant, { Assistant } from './Assistant';
 
 const id = 'test-recipe';
 const category = 'test-category';

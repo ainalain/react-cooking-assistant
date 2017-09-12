@@ -1,16 +1,16 @@
 import expect from 'expect';
 import React from 'react';
-import { shallow  } from 'enzyme';
-import Card from '../../../src/components/common/Card';
-import styles from '../../../src/components/common/Card.scss';
+import { shallow } from 'enzyme';
+import Card from './Card';
+import styles from './Card.scss';
 
 const props = {
   recipe: {
-      id: 'chocolate-cake',
-      title: 'Chocolate cake',
-      cookingTime: "120",
-      category: "Desserts"
-    }
+    id: 'chocolate-cake',
+    title: 'Chocolate cake',
+    cookingTime: "120",
+    category: "Desserts",
+  },
 };
 
 describe('Card', () => {

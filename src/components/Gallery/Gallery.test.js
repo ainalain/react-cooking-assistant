@@ -1,8 +1,8 @@
 import expect from 'expect';
 import React from 'react';
 import { shallow  } from 'enzyme';
-import Gallery from '../../../src/components/common/Gallery';
-import styles from '../../../src/components/common/Gallery.scss';
+import Gallery from './Gallery';
+import styles from './Gallery.scss';
 
 const props = {
   category: 'Mixed',

@@ -1,7 +1,7 @@
 import expect from 'expect';
 import React from 'react';
 import { shallow  } from 'enzyme';
-import { HomePage } from '../../../src/components/home/HomePage';
+import { HomePage } from './HomePage';
 
 const setup = (isLoading) => {
   const match = {

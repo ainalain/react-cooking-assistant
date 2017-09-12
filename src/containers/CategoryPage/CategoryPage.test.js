@@ -5,7 +5,7 @@ import { shallow, mount  } from 'enzyme';
 import configureStore from 'redux-mock-store';
 import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
-import ConnectedPage, { CategoryPage } from '../../../src/components/recipe/CategoryPage';
+import ConnectedPage, { CategoryPage } from './CategoryPage';
 
 const mockStore = configureStore([thunk]);
 

@@ -1,9 +1,9 @@
 import expect from 'expect';
 import React from 'react';
-import { shallow  } from 'enzyme';
-import App from '../../src/components/App';
+import { shallow } from 'enzyme';
+import App from './App';
 
-//the idea from https://medium.freecodecamp.com/the-right-way-to-test-react-components-548a4736ab22
+// the idea from https://medium.freecodecamp.com/the-right-way-to-test-react-components-548a4736ab22
 describe('App', () => {
   it('always renders a div', () => {
     const component = shallow(<App />);

@@ -1,7 +1,7 @@
 import expect from 'expect';
 import React from 'react';
 import { shallow  } from 'enzyme';
-import Recipe from '../../../src/components/recipe/Recipe';
+import Recipe from './Recipe';
 
 const recipe = {
     'id': 'test-recipe',
